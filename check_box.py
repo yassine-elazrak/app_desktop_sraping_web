@@ -57,7 +57,7 @@ class Check_box(Frame):
 
     def creat(self):
         self.field1 = Frame(self.fram)
-        self.field1.grid(row=0, columnspan=12, sticky='w', padx=8, pady=8)
+        self.field1.grid(row=0, columnspan=12, sticky='w', padx=4, pady=3)
         for name in self.fieldnames[0]:
             var = IntVar()
             box = Checkbutton(self.field1, text=str(name) ,variable=var)
@@ -65,7 +65,7 @@ class Check_box(Frame):
             self.vars.append(var)
 
         self.field2 = Frame(self.fram)
-        self.field2.grid(row=1, columnspan=12, sticky='w', padx=8, pady=8)
+        self.field2.grid(row=1, columnspan=12, sticky='w', padx=4, pady=3)
         for name in self.fieldnames[1]:
             var = IntVar()
             box = Checkbutton(self.field2, text=str(name) ,variable=var)
@@ -73,7 +73,7 @@ class Check_box(Frame):
             self.vars.append(var)
 
         self.field3 = Frame(self.fram)
-        self.field3.grid(row=2, columnspan=12, sticky='w', padx=8, pady=8)
+        self.field3.grid(row=2, columnspan=12, sticky='w', padx=4, pady=3)
         for name in self.fieldnames[2]:
             var = IntVar()
             box = Checkbutton(self.field3, text=str(name),variable=var)
@@ -81,7 +81,7 @@ class Check_box(Frame):
             self.vars.append(var)
 
         self.field4 = Frame(self.fram)
-        self.field4.grid(row=3, columnspan=12, sticky='w', padx=8, pady=8)
+        self.field4.grid(row=3, columnspan=12, sticky='w', padx=4, pady=3)
         for name in self.fieldnames[3]:
             var = IntVar()
             box = Checkbutton(self.field4, text=str(name) ,variable=var)
@@ -92,7 +92,7 @@ class Check_box(Frame):
         index = 0
         for Variable in self.vars:
             if Variable.get() == 1:
-                self.fields.append(keys[index])
+                self.fields.append(self.keys[index])
             index += 1
 
     def get_all(self):
@@ -103,9 +103,9 @@ class Check_box(Frame):
         return self.fields
     
     def clear_all(self):
-        pass
-        # for var in self.vars:
-        #     var.delete(0,END)
+        for var in self.vars:
+            var.set(0)
+        
 
     def main(self):
         self.fram = LabelFrame(
@@ -127,7 +127,7 @@ class List_box:
         self.Words = []
 
     def add(self):
-        if self.get():
+        if self.data.get():
             self.Words.append(self.data.get())
             self.list_box.insert(END, self.data.get())
             self.data.delete(0, END)
@@ -143,6 +143,7 @@ class List_box:
     def clear_all(self):
         self.Words.clear()
         self.list_box.delete(0,END)
+        self.data.delete(0,END)
 
 
     def creat(self):
@@ -162,8 +163,8 @@ class List_box:
 
         self.field2 = Frame(self.fram)
         self.field2.grid(row=2, columnspan=8, sticky='w', padx=8, pady=8)
-        self.list_box = Listbox(self.field2, height=15,
-                                width=40,
+        self.list_box = Listbox(self.field2, height=2,
+                                width=50,
                                 bg="grey",
                                 activestyle='dotbox',
                                 font="Helvetica",
@@ -174,5 +175,5 @@ class List_box:
         self.fram = LabelFrame(
             self.master, text="Enter Details For Words Search :")
         self.fram.grid(row=10, columnspan=10, sticky='w',
-                       padx=5, pady=5, ipadx=15, ipady=15)
+                       padx=5, pady=5, ipadx=5, ipady=5)
         self.creat()

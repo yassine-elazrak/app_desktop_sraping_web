@@ -31,6 +31,27 @@ class date:
         self.days_until.grid(row=2, column=4, padx=5, pady=5)
         self.heurs_until=Input(self.fram, "heur")
         self.heurs_until.grid(row=2, column=5, padx=5, pady=5)
+    def get_all(self):
+        self.vars[0].append(self.years.get())
+        self.vars[0].append(self.months.get())
+        self.vars[0].append(self.days.get())
+        self.vars[0].append(self.heurs.get())
+        self.vars[1].append(self.years_until.get())
+        self.vars[1].append(self.months_until.get())
+        self.vars[1].append(self.days_until.get())
+        self.vars[1].append(self.heurs_until.get())
+        return self.vars
+
+    def clear_all(self):
+        self.years.delete(0, END)
+        self.months.delete(0, END)
+        self.days.delete(0, END)
+        self.heurs.delete(0, END)
+        self.years_until.delete(0, END)
+        self.months_until.delete(0, END)
+        self.days_until.delete(0, END)
+        self.heurs_until.delete(0, END)
+
 
 
     def creat(self):
@@ -49,7 +70,7 @@ class DIR:
         self.vars["name"] = "tweets_twitter"
         self.vars["path"]=  "."
 
-    def name_file(self):
+    def ft_name_file(self):
         Label(self.fram, text="Name File Output").grid(row=0, column=0, columnspan=2 ,sticky='w', padx=5, pady=2)
         self.name_file=Input(self.fram, "name file")
         self.name_file.grid(row=0, column=2,columnspan=2, padx=5, pady=5)
@@ -76,7 +97,7 @@ class DIR:
         self.fram = LabelFrame(self.master, text="Enter Details For Output :")
         self.fram.grid(row=2, columnspan=10, sticky='w', \
                  padx=5, pady=5, ipadx=5, ipady=5)
-        self.name_file()
+        self.ft_name_file()
         self.ft_path()
 
 

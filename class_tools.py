@@ -41,17 +41,23 @@ class Run:
         pass
     
     def clear_all(self):
-        pass
+        self.date.clear_all()
+        self.path.clear_all()
+        self.box.clear_all()
+        self.arena.clear_all()
 
     def valide(self):
+        pass
+    def run(self):
+        print("run command")
         pass
 
     def creat(self):
         self.buton = Frame(self.master)
         self.buton.grid(row=18,columnspan=12, rowspan=3, sticky='SE')
-        self.buton_clear = Button(self.buton, text="clear",  width = 10)
+        self.buton_clear = Button(self.buton, text="clear", command=self.clear_all,  width = 10)
         self.buton_clear.grid(row=2, column=12, padx=5, pady=6)
-        self.buton_run = Button(self.buton, text="run" , width = 10) 
+        self.buton_run = Button(self.buton, text="run" , command=self.run, width = 10) 
         self.buton_run.grid(row=2, column=13, padx=5, pady=6)
 
 

@@ -6,6 +6,12 @@ from check_box import Check_box
 from check_box import List_box
 from time import sleep
 
+font10="{Courier New} 10 normal"
+font11 = {"{U.S. 101} 30 bold"}
+font15 = {"{Al-Aramco 11 bold}"}
+font16="{Segoe UI} 13 bold"
+# fg= "steel blue"  "#f2a343" "bg#d9d9d9" "#c60000"
+
 class Checkbar(Frame):
     def __init__(self, parent=None, picks=[], side=LEFT, anchor=W):
         Frame.__init__(self, parent)
@@ -38,7 +44,8 @@ def main():
 
 def app_init():
     apps.title("extracting_tweets")
-    apps.geometry('950x850+50+50')
+    apps.geometry('750x580+10+10')
+    apps.configure(background="#091833")
 
 
 if __name__ == "__main__":
