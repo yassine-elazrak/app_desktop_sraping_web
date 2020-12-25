@@ -37,33 +37,78 @@
 
 
 
+# from tkinter import *
+# class Checkbar(Frame):
+#    def __init__(self, parent=None, picks=[], side=LEFT, anchor=W):
+#       Frame.__init__(self, parent)
+#       self.master = parent
+#       self.vars = []
+#       for pick in picks:
+#          var = IntVar()
+#          chk = Checkbutton(self, text=pick, variable=var)
+#          chk.pack(side=side, anchor=anchor, expand=YES)
+#          self.vars.append(var)
+#    def state(self):
+#       return map((lambda var: var.get()), self.vars)
+# if __name__ == '__main__':
+#    root = Tk()
+#    lng = Checkbar(root, ['Python', 'Ruby', 'Perl', 'C++'])
+# #    tgl = Checkbar(root, ['English','German'])
+#    lng.pack(side=TOP,  fill=X)
+# #    tgl.pack(side=LEFT)
+#    lng.config(relief=GROOVE, bd=2)
+
+#    def allstates(): 
+#       print(list(lng.state()))
+#     #   , list(tgl.state()))
+#    Button(root, text='Quit', command=root.quit).pack(side=RIGHT)
+#    Button(root, text='Peek', command=allstates).pack(side=RIGHT)
+#    root.mainloop()
+
+# from tkinter import *
+
+# master = Tk()
+
+# scrollbary = Scrollbar(master)
+# scrollbarx = Scrollbar(master, orient=HORIZONTAL)
+
+# listbox = Listbox(master, yscrollcommand=scrollbary.set, xscrollcommand=scrollbarx.set)
+# for i in range(1, 100):
+#     listbox.insert(END, "NUMBEEEEEEEEEEEEEEEEEEEEEEEEEEEEER:")
+#     listbox.insert(END, str(i))
+
+# scrollbary.config(command=listbox.yview)
+# scrollbarx.config(command=listbox.xview)
+
+# listbox.pack(side=LEFT, fill=BOTH)
+# scrollbary.pack(side=RIGHT, fill=Y)
+# scrollbarx.pack(side=BOTTOM, fill=X)
+
+# mainloop()
+
+
 from tkinter import *
-class Checkbar(Frame):
-   def __init__(self, parent=None, picks=[], side=LEFT, anchor=W):
-      Frame.__init__(self, parent)
-      self.vars = []
-      for pick in picks:
-         var = IntVar()
-         chk = Checkbutton(self, text=pick, variable=var)
-         chk.pack(side=side, anchor=anchor, expand=YES)
-         self.vars.append(var)
-   def state(self):
-      return map((lambda var: var.get()), self.vars)
-if __name__ == '__main__':
-   root = Tk()
-   lng = Checkbar(root, ['Python', 'Ruby', 'Perl', 'C++'])
-#    tgl = Checkbar(root, ['English','German'])
-   lng.pack(side=TOP,  fill=X)
-#    tgl.pack(side=LEFT)
-   lng.config(relief=GROOVE, bd=2)
 
-   def allstates(): 
-      print(list(lng.state()))
-    #   , list(tgl.state()))
-   Button(root, text='Quit', command=root.quit).pack(side=RIGHT)
-   Button(root, text='Peek', command=allstates).pack(side=RIGHT)
-   root.mainloop()
+root=Tk()
+frame=Frame(root,width=300,height=300)
+frame.grid(row=0,column=0)
+canvas=Canvas(frame,bg='#FFFFFF',width=400,height=300)
 
+canvas.config(width=400,height=300)
+#canvas.config(xscrollcommand=hbar.set, yscrollcommand=vbar.set)
+canvas.pack(side=LEFT,expand=True,fill=BOTH)
+
+scrollbar = Scrollbar(canvas)
+scrollbar.pack( side = RIGHT, fill=Y )
+
+mylist = Listbox(canvas, yscrollcommand = scrollbar.set )
+for line in range(100):
+   mylist.insert(END, "This is line number " + str(line))
+
+mylist.pack( side = LEFT, fill = BOTH )
+scrollbar.config( command = mylist.yview )
+
+mainloop()
     
 
 
