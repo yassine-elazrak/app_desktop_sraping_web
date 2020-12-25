@@ -2,6 +2,7 @@
 from tkinter import *
 from class_tools import Input
 from functools import reduce
+from pprint import pprint
 
 class Check_box(Frame):
 
@@ -59,7 +60,7 @@ class Check_box(Frame):
         self.field1.grid(row=0, columnspan=12, sticky='w', padx=8, pady=8)
         for name in self.fieldnames[0]:
             var = IntVar()
-            box = Checkbutton(self.field1, text=str(name))
+            box = Checkbutton(self.field1, text=str(name) ,variable=var)
             box.pack(side=LEFT)
             self.vars.append(var)
 
@@ -67,7 +68,7 @@ class Check_box(Frame):
         self.field2.grid(row=1, columnspan=12, sticky='w', padx=8, pady=8)
         for name in self.fieldnames[1]:
             var = IntVar()
-            box = Checkbutton(self.field2, text=str(name))
+            box = Checkbutton(self.field2, text=str(name) ,variable=var)
             box.pack(side=LEFT)
             self.vars.append(var)
 
@@ -75,7 +76,7 @@ class Check_box(Frame):
         self.field3.grid(row=2, columnspan=12, sticky='w', padx=8, pady=8)
         for name in self.fieldnames[2]:
             var = IntVar()
-            box = Checkbutton(self.field3, text=str(name))
+            box = Checkbutton(self.field3, text=str(name),variable=var)
             box.pack(side=LEFT)
             self.vars.append(var)
 
@@ -83,22 +84,28 @@ class Check_box(Frame):
         self.field4.grid(row=3, columnspan=12, sticky='w', padx=8, pady=8)
         for name in self.fieldnames[3]:
             var = IntVar()
-            box = Checkbutton(self.field4, text=str(name))
+            box = Checkbutton(self.field4, text=str(name) ,variable=var)
             box.pack(side=LEFT)
             self.vars.append(var)
 
     def ft_map(self):
         index = 0
-        for bol in self.vars:
-            if bol == 1:
+        for Variable in self.vars:
+            if Variable.get() == 1:
                 self.fields.append(keys[index])
             index += 1
 
-    def state(self):
-        ft_map()
-        if not self.fieds:
+    def get_all(self):
+        self.ft_map()
+        pprint(self.vars)
+        if not self.fields:
             return self.keys
         return self.fields
+    
+    def clear_all(self):
+        pass
+        # for var in self.vars:
+        #     var.delete(0,END)
 
     def main(self):
         self.fram = LabelFrame(
@@ -107,6 +114,7 @@ class Check_box(Frame):
                        padx=5, pady=5, ipadx=5, ipady=5)
         self.creat()
 
+##########################
     # def state(self):
     #     return map((lambda var: var.get()), self.vars)
 
@@ -129,8 +137,13 @@ class List_box:
             self.list_box.delete(END)
             self.Words.pop()
 
-    def state(self):
+    def get_all(self):
         return self.Words
+        
+    def clear_all(self):
+        self.Words.clear()
+        self.list_box.delete(0,END)
+
 
     def creat(self):
         self.field1 = Frame(self.fram)

@@ -29,8 +29,32 @@ class Input(Entry):
             self.put_placeholder()
 
 
+class Run:
+    def __init__(self, apps=None, date=None,   path=None, box=None, arena=None ):
+        self.master = apps
+        self.date = date
+        self.path=path
+        self.box=box
+        self.arena=arena
 
-# def ft_label(root,name, y, x, pady=20, padx = 20):
-#     # part_text = StringVar() rowspan=6, pady=20, padx=20)
-#     part_label = Label(root, text=name, font=('bold', 14), pady=pady, padx=padx)
-#     part_label.grid(row=y, column=x, sticky=W)
+    def get_all(self):
+        pass
+    
+    def clear_all(self):
+        pass
+
+    def valide(self):
+        pass
+
+    def creat(self):
+        self.buton = Frame(self.master)
+        self.buton.grid(row=18,columnspan=12, rowspan=3, sticky='SE')
+        self.buton_clear = Button(self.buton, text="clear",  width = 10)
+        self.buton_clear.grid(row=2, column=12, padx=5, pady=6)
+        self.buton_run = Button(self.buton, text="run" , width = 10) 
+        self.buton_run.grid(row=2, column=13, padx=5, pady=6)
+
+
+    def main(self):
+        self.creat()
+        # self.valide()
