@@ -1,5 +1,5 @@
 from tkinter import *
-
+from ft_twint import Config_twint
 
 class Input(Entry):
     def __init__(self, master=None, placeholder="PLACEHOLDER", color='grey'):
@@ -36,6 +36,13 @@ class Run:
         self.path=path
         self.box=box
         self.arena=arena
+        self.keys=[]
+        self.custom = []
+        self.since = ""
+        self.until = ""
+        self.name_file = ""
+        self.path_file = ""
+
 
     def get_all(self):
         pass
@@ -48,9 +55,10 @@ class Run:
 
     def valide(self):
         pass
+
     def run(self):
-        print("run command")
-        pass
+        self.c = Config_twint(self.keys , self.since , self.until, self.name_file , self.path_file, self.custom)
+        self.run()
 
     def creat(self):
         self.buton = Frame(self.master)

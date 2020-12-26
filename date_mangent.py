@@ -31,15 +31,21 @@ class date:
         self.days_until.grid(row=2, column=4, padx=5, pady=5)
         self.heurs_until=Input(self.fram, "heur")
         self.heurs_until.grid(row=2, column=5, padx=5, pady=5)
+
     def get_all(self):
-        self.vars[0].append(self.years.get())
-        self.vars[0].append(self.months.get())
-        self.vars[0].append(self.days.get())
-        self.vars[0].append(self.heurs.get())
-        self.vars[1].append(self.years_until.get())
-        self.vars[1].append(self.months_until.get())
-        self.vars[1].append(self.days_until.get())
-        self.vars[1].append(self.heurs_until.get())
+
+        # self.vars[0].append(self.years.get())
+        # self.vars[0].append(self.months.get())
+        # self.vars[0].append(self.days.get())
+        # self.vars[0].append(self.heurs.get())
+        # self.vars[1].append(self.years_until.get())
+        # self.vars[1].append(self.months_until.get())
+        # self.vars[1].append(self.days_until.get())
+        # self.vars[1].append(self.heurs_until.get())
+        since = self.years + self.months + self.days + " " + self.heurs + ":00:00"
+        until = self.years_until + "-" + self.months_until +  "-" + self.days_until + " " + self.heurs_until + ":00:00"
+        print("since = ", since)
+        print("until = ", until)
         return self.vars
 
     def clear_all(self):
