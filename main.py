@@ -1,10 +1,14 @@
-from tkinter import *
-from date_mangent import date
-from date_mangent import DIR
-from class_tools import Run
-from check_box import Check_box
-from check_box import List_box
-from time import sleep
+try:
+    from tkinter import *
+    from date_mangent import date
+    from date_mangent import DIR
+    from class_tools import Run
+    from check_box import Check_box
+    from check_box import List_box
+    from time import sleep
+except:
+    print("error import")
+    import sys ; sys.exit()
 
 font10="{Courier New} 10 normal"
 font11 = {"{U.S. 101} 30 bold"}
@@ -44,7 +48,7 @@ def main():
 
 def app_init():
     apps.title("extracting_tweets")
-    apps.geometry('750x580+10+10')
+    apps.geometry('920x580+10+10')#750x580+10+10
     apps.configure(background="#091833")
 
 

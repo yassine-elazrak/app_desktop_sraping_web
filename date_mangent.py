@@ -18,8 +18,8 @@ class date:
         self.months.grid(row=0, column=3, padx=5, pady=5)
         self.days = Input(self.fram, "day")
         self.days.grid(row=0, column=4, padx=5, pady=5)
-        self.heurs = Input(self.fram, "heur")
-        self.heurs.grid(row=0, column=5, padx=5, pady=5)
+        self.hours = Input(self.fram, "hour")
+        self.hours.grid(row=0, column=5, padx=5, pady=5)
 
     def date_until(self):
         Label(self.fram, text="Date Until").grid(row=2, column=0, columnspan=2 ,sticky='E', padx=5, pady=2)
@@ -29,34 +29,43 @@ class date:
         self.months_until.grid(row=2, column=3, padx=5, pady=5)
         self.days_until=Input(self.fram, "day")
         self.days_until.grid(row=2, column=4, padx=5, pady=5)
-        self.heurs_until=Input(self.fram, "heur")
-        self.heurs_until.grid(row=2, column=5, padx=5, pady=5)
+        self.hours_until=Input(self.fram, "hour")
+        self.hours_until.grid(row=2, column=5, padx=5, pady=5)
+
+    def valide(self):
+        pass
+
+
+
+
+
+
 
     def get_all(self):
 
         # self.vars[0].append(self.years.get())
         # self.vars[0].append(self.months.get())
         # self.vars[0].append(self.days.get())
-        # self.vars[0].append(self.heurs.get())
+        # self.vars[0].append(self.hours.get())
         # self.vars[1].append(self.years_until.get())
         # self.vars[1].append(self.months_until.get())
         # self.vars[1].append(self.days_until.get())
-        # self.vars[1].append(self.heurs_until.get())
-        since = self.years + self.months + self.days + " " + self.heurs + ":00:00"
-        until = self.years_until + "-" + self.months_until +  "-" + self.days_until + " " + self.heurs_until + ":00:00"
+        # self.vars[1].append(self.hours_until.get())
+        since = self.years.get() + "-" + self.months.get() + "-" + self.days.get() + " " + self.hours.get() + ":00:00"
+        until = self.years_until.get() + "-" + self.months_until.get() +  "-" + self.days_until.get() + " " + self.hours_until.get() + ":00:00"
         print("since = ", since)
         print("until = ", until)
         return self.vars
 
     def clear_all(self):
-        self.years.delete(0, END)
-        self.months.delete(0, END)
-        self.days.delete(0, END)
-        self.heurs.delete(0, END)
-        self.years_until.delete(0, END)
-        self.months_until.delete(0, END)
-        self.days_until.delete(0, END)
-        self.heurs_until.delete(0, END)
+        self.years.ft_delete(0, END)
+        self.months.ft_delete(0, END)
+        self.days.ft_delete(0, END)
+        self.hours.ft_delete(0, END)
+        self.years_until.ft_delete(0, END)
+        self.months_until.ft_delete(0, END)
+        self.days_until.ft_delete(0, END)
+        self.hours_until.ft_delete(0, END)
 
 
 
@@ -87,8 +96,8 @@ class DIR:
         self.path_file.grid(row=0, column=11, padx=5, pady=5)
 
     def clear_all(self):
-        self.name_file.delete(0, END)
-        self.path_file.delete(0, END)
+        self.name_file.ft_delete(0, END)
+        self.path_file.ft_delete(0, END)
         self.vars["name"] = "tweets_twitter"
         self.vars["path"]=  "."
     

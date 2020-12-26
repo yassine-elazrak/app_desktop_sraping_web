@@ -46,7 +46,7 @@ def ft_entry(root, y,x):
 # ft_label(app,"year ",0,1)
 # ft_label(app,"month",0,2)
 # ft_label(app,"day",0,3)
-# ft_label(app,"heur",0,4)
+# ft_label(app,"hour",0,4)
 
 # ft_entry(app,1,1)
 # ft_entry(app,1,2)
@@ -58,7 +58,7 @@ def ft_entry(root, y,x):
 # # ft_label(app,"year ",2,1)
 # # ft_label(app,"month",2,2)
 # # ft_label(app,"day",2,3)
-# # ft_label(app,"heur",2,4)
+# # ft_label(app,"hour",2,4)
 
 # ft_label(app,"date Until ",2,0)
 # ft_entry(app,2,1)

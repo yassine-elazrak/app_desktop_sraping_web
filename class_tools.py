@@ -1,53 +1,93 @@
 from tkinter import *
-from ft_twint import Config_twint
+
+# from ft_twint import Config_twint
+from pprint import pprint
+
 
 class Input(Entry):
-    def __init__(self, master=None, placeholder="PLACEHOLDER", color='grey'):
+    def __init__(
+        self,
+        master=None,
+        placeholder="PLACEHOLDER",
+        color="grey",
+        color_error="red3",
+        test=lambda a: a.isdigit(),
+    ):
         super().__init__(master)
 
         self.placeholder = placeholder
         self.placeholder_color = color
-        self.default_fg_color = self['fg']
-        self.string = ""
-
+        self.default_fg_color = self["fg"]
+        self.color_error = color_error
+        self.func_test = test
+        self.data_is_valid = False
+        self.cursor = False
         self.bind("<FocusIn>", self.foc_in)
         self.bind("<FocusOut>", self.foc_out)
+        self.bind("<KeyRelease>", self.release)
 
         self.put_placeholder()
 
+    # def enter(self, *args):
+    #     print("enter")
+
     def put_placeholder(self):
         self.insert(0, self.placeholder)
-        self['fg'] = self.placeholder_color
+        self["fg"] = self.placeholder_color
 
     def foc_in(self, *args):
-        if self['fg'] == self.placeholder_color:
-            self.delete('0', 'end')
-            self['fg'] = self.default_fg_color
+        self.cursor = True
+        if self["fg"] == self.placeholder_color:
+            self.delete("0", "end")
+            self["fg"] = self.default_fg_color
+
+    def ft_delete(self, *args):
+        self.delete(*args)
+        if not self.cursor:
+            self.put_placeholder()
+
+    def release(self, *args):
+        if not self.func_test(self.get()):
+            self["fg"] = self.color_error
+            self.data_is_valid = False
+        else:
+            self["fg"] = self.default_fg_color
+            self.data_is_valid = True
 
     def foc_out(self, *args):
+        self.cursor = False
         if not self.get():
             self.put_placeholder()
+        # else:
+        #     if not self.func_test(self.get()):
+        #         self['fg'] = self.color_error
+        #         self.data_is_valid = False
+        #     else:
+        #         self['fg'] = self.default_fg_color
+        #         self.data_is_valid = True
 
 
 class Run:
-    def __init__(self, apps=None, date=None,   path=None, box=None, arena=None ):
+    def __init__(self, apps=None, date=None, path=None, box=None, arena=None):
         self.master = apps
         self.date = date
-        self.path=path
-        self.box=box
-        self.arena=arena
-        self.keys=[]
+        self.path = path
+        self.box = box
+        self.arena = arena
+        self.keys = []
         self.custom = []
         self.since = ""
         self.until = ""
         self.name_file = ""
         self.path_file = ""
 
-
     def get_all(self):
         pass
-    
+
     def clear_all(self):
+        # test
+        print("date  ==>", self.date.get_all())
+
         self.date.clear_all()
         self.path.clear_all()
         self.box.clear_all()
@@ -57,17 +97,19 @@ class Run:
         pass
 
     def run(self):
-        self.c = Config_twint(self.keys , self.since , self.until, self.name_file , self.path_file, self.custom)
-        self.run()
+        pass
+        # self.c = Config_twint(self.keys , self.since , self.until, self.name_file , self.path_file, self.custom)
+        # self.c.run()
 
     def creat(self):
         self.buton = Frame(self.master)
-        self.buton.grid(row=18,columnspan=12, rowspan=3, sticky='SE')
-        self.buton_clear = Button(self.buton, text="clear", command=self.clear_all,  width = 10)
+        self.buton.grid(row=18, columnspan=12, rowspan=3, sticky="SE")
+        self.buton_clear = Button(
+            self.buton, text="clear", command=self.clear_all, width=10
+        )
         self.buton_clear.grid(row=2, column=12, padx=5, pady=6)
-        self.buton_run = Button(self.buton, text="run" , command=self.run, width = 10) 
+        self.buton_run = Button(self.buton, text="run", command=self.run, width=10)
         self.buton_run.grid(row=2, column=13, padx=5, pady=6)
-
 
     def main(self):
         self.creat()

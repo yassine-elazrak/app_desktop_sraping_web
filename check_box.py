@@ -130,11 +130,11 @@ class List_box:
         if self.data.get():
             self.Words.append(self.data.get())
             self.list_box.insert(END, self.data.get())
-            self.data.delete(0, END)
+            self.data.ft_delete(0, END)
 
     def remove(self):
         if self.Words:
-            self.list_box.delete(END)
+            self.list_box.ft_delete(END)
             self.Words.pop()
 
     def get_all(self):
@@ -143,7 +143,7 @@ class List_box:
     def clear_all(self):
         self.Words.clear()
         self.list_box.delete(0,END)
-        self.data.delete(0,END)
+        self.data.ft_delete(0,END)
 
 
     def creat(self):
