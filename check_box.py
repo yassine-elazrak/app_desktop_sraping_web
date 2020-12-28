@@ -153,10 +153,10 @@ class List_box:
 
         self.data = Input(self.field1, "      enter key search")
         self.data.grid(row=0, column=1, padx=3,pady=5, ipadx=88, ipady=11)
-        self.button_add = Button(self.field1, text='add element', command=self.add)
+        self.button_add = Button(self.field1, text='   add element  ', command=self.add)
         self.button_add.grid(row=1, column=0,  padx=5,pady=1, ipadx=5, ipady=5)
         self.button_remove = Button(
-        self.field1, text='remove element', command=self.remove)
+        self.field1, text=' remove element ', command=self.remove)
         self.button_remove.grid(row=1, column=1,  padx=5,pady=1, ipadx=5, ipady=5)
 
         self.field2 = Frame(self.fram,bg="#091833")

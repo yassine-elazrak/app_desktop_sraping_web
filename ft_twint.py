@@ -1,5 +1,5 @@
 try:
-    # import twint
+    import twint
     import datetime
     # import pandas as pd
 except RuntimeError:
@@ -8,11 +8,11 @@ except RuntimeError:
 
 class Config_twint:
     def __init__(self, keys=[], since="2019-12-29",until="2020-01-01", outfile="tweets33", custom=[]):
-        print("keys ", keys)
-        print("since ", since)
-        print("until ", until)
-        print("outfile ", outfile)
-        print("custom ", custom)  
+        # print("keys ", keys)
+        # print("since ", since)
+        # print("until ", until)
+        # print("outfile ", outfile)
+        # print("custom ", custom)  
   
         self.name_file = outfile
         self.keys = custom
@@ -22,24 +22,24 @@ class Config_twint:
         self.c.Until = until
         # self.c.Lang = "en"
         self.c.Store_csv = True
-        self.c.Output = "tweetss" 
+        self.c.Output = "tweets.csv" 
         self.c.Hide_output = True
 
-    def slice_file(self):
-        df = pd.read_csv(".tweets.csv")
-        new_f = df[self.keys]
-        new_f.to_csv(self.name_file , index=False)
+    # def slice_file(self):
+    #     df = pd.read_csv(".tweets.csv")
+    #     new_f = df[self.keys]
+    #     new_f.to_csv(self.name_file , index=False)
 
 
     def run(self):
         pass
         twint.run.Search(self.c)
-        # self.slice_file()
+#         # self.slice_file()
 
 
     
 def main():
-    ftrun = Config_twint(keys=["RAM_Maroc"],custom=["id",
+    run = Config_twint(keys=["RAM_Maroc"],custom=["id",
             "conversation_id",
             "created_at",
             "date",
@@ -48,6 +48,6 @@ def main():
             "user_id",
             "username",
             "name"])
-    ftrun.ttrun()
+    run.run()
 if __name__ == "__main__":
     main()
