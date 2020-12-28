@@ -46,7 +46,7 @@ class Time:
         top = Toplevel(self.master)
         self.cal_since = Calendar(top, font="Arial 14", selectmode="day", year=2020,month=11,day=22)
         self.cal_since.pack()
-        self.butt_cal = Button(self.cal_since, text="ok", command=self.set_since , bg='red', height = 1, width = 14)
+        self.butt_cal = Button(self.cal_since, text="ok",command=self.set_since , bg='red', height = 1, width = 14) 
         self.butt_cal.pack()
         # quitButton(self.cal_since)#######test
 
@@ -109,34 +109,34 @@ class Time:
 
     def main(self):
         self.fram = LabelFrame(self.master, text=" Enter Details On Date :",  fg = "red",
-		 font =("Courier", 36, "italic"))
-        self.fram.grid(row=0, columnspan=10, sticky='W', \
+		 font =("Courier", 26, "italic"))
+        self.fram.grid(row=0, columnspan=8, sticky='W', \
                  padx=5,pady=1, ipadx=5, ipady=5)
         self.fram.configure(background="#091833")
 
-        self.butt = Button(self.fram, text="date since",  command=self.ft_calendar_since, bg = "blue")
+        self.butt = Button(self.fram, text="date since",  command=self.ft_calendar_since)
         self.butt.grid(row=0, column=2,  padx=5,pady=1, ipadx=5, ipady=5)
-        self.butt.configure(background="#091833")
-        Label(self.fram, textvariable=self.var_since , bg="#f2a343" , font =("Courier", 22, "italic")).grid(row=0, column=4,  padx=5, pady=1, ipadx=5, ipady=5)
+        # self.butt.configure(background="#091833")
+        Label(self.fram, textvariable=self.var_since , bg="#f2a343" , font =("Courier", 15, "italic")).grid(row=0, column=4,  padx=5, pady=1, ipadx=5, ipady=5)
 
         self.butt_inc = Button(self.fram, text="increment hour    ", command= self.ft_increment_hour_since)
         self.butt_inc.grid(row=0, column=5,  padx=5,pady=1, ipadx=5, ipady=5)
 
         self.butt_dec = Button(self.fram, text="decrement hour     ", command=self.ft_decrement_hour_since)
         self.butt_dec.grid(row=0, column=6,  padx=5,pady=1, ipadx=5, ipady=5)
-        Label(self.fram, textvariable=self.var_hour_since , bg="#f2a343" , font =("Courier", 22, "italic")).grid(row=0, column=8,  padx=5,pady=1, ipadx=5, ipady=5)
-        Label(self.fram, text="hour_since", bg="#091833" , font =("Courier", 22, "italic")).grid(row=0, column=10,  padx=5,pady=1, ipadx=5, ipady=5)
+        Label(self.fram, textvariable=self.var_hour_since , bg="#f2a343" , font =("Courier", 15, "italic")).grid(row=0, column=8,  padx=5,pady=1, ipadx=5, ipady=5)
+        Label(self.fram, text="hour_since", bg="#091833" , font =("Courier", 15, "italic")).grid(row=0, column=10,  padx=5,pady=1, ipadx=5, ipady=5)
         
 
         self.butt = Button(self.fram, text="date until", command=self.ft_calendar_untill)
         self.butt.grid(row=1, column=2, padx=5,pady=1, ipadx=5, ipady=5)
 
-        Label(self.fram, textvariable=self.var_untill, bg="#f2a343" , font =("Courier", 22, "italic")).grid(row=1, column=4,  padx=5, pady=1, ipadx=5, ipady=5)
+        Label(self.fram, textvariable=self.var_untill, bg="#f2a343" , font =("Courier", 15, "italic")).grid(row=1, column=4,  padx=5, pady=1, ipadx=5, ipady=5)
 
         self.butt_inc_mn = Button(self.fram, text="increment hour     ", command=self.ft_increment_hour_untill)
         self.butt_inc_mn.grid(row=1, column=5,  padx=5,pady=1, ipadx=5, ipady=5)
         self.butt_dec_mn = Button(self.fram, text="decrement hour     ", command=self.ft_decrement_hour_untill)
         self.butt_dec_mn.grid(row=1, column=6,  padx=5,pady=1, ipadx=5, ipady=5)
 
-        Label(self.fram, textvariable=self.var_hour_untill, bg="#f2a343" , font =("Courier", 22, "italic")).grid(row=1, column=8,  padx=5,pady=1, ipadx=5, ipady=5)
-        Label(self.fram, text="hour_until", bg="#091833" , font =("Courier", 22, "italic")).grid(row=1, column=10,  padx=5,pady=1, ipadx=5, ipady=5)
+        Label(self.fram, textvariable=self.var_hour_untill, bg="#f2a343" , font =("Courier", 15, "italic")).grid(row=1, column=8,  padx=5,pady=1, ipadx=5, ipady=5)
+        Label(self.fram, text="hour_until", bg="#091833" , font =("Courier", 15, "italic")).grid(row=1, column=10,  padx=5,pady=1, ipadx=5, ipady=5)

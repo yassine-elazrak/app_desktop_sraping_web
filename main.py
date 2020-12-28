@@ -28,12 +28,13 @@ def main():
     arena.main()
     run=Run(apps,clander, path, box, arena)
     run.main()
+   
   
   
 
 def app_init():
     apps.title("extracting_tweets")
-    apps.geometry('920x680+10+10')#750x580+10+10 bg="#091833"
+    apps.geometry('1050x530+0+0')#750x580+10+10 bg="#091833"
     apps.configure(background="#091833")
 
 

@@ -14,6 +14,8 @@ class Input(Entry):
     ):
         super().__init__(master)
         self["bg"] = "#091833"
+        self["fg"] = "blue"
+        # height=100)
         self.placeholder = placeholder
         self.placeholder_color = color
         self.default_fg_color = self["fg"]
@@ -56,6 +58,10 @@ class Input(Entry):
         if not self.get():
             self.put_placeholder()
        
+# class BUTTON(Button):
+#     def __init__(self, *args):
+#         super.__init__(*args)
+
 
 class Run:
     def __init__(self, apps=None, date=None, path=None, box=None, arena=None):
@@ -93,13 +99,13 @@ class Run:
 
     def creat(self):
         self.buton = Frame(self.master, bg="#091833")
-        self.buton.grid(row=18, columnspan=12, rowspan=3, sticky="SE")
+        self.buton.grid(row=18, columnspan=13, rowspan=3, sticky="SE")
         self.buton_clear = Button(
-            self.buton, text="clear", command=self.clear_all, width=10
+            self.buton, text="clear", command=self.clear_all, width=16
         )
-        self.buton_clear.grid(row=2, column=12, padx=5, pady=6)
-        self.buton_run = Button(self.buton, text="run", command=self.run, width=10)
-        self.buton_run.grid(row=2, column=13, padx=5, pady=6)
+        self.buton_clear.grid(row=2, column=12, padx=5,pady=2, ipadx=5, ipady=5)
+        self.buton_run = Button(self.buton, text="run", command=self.run, width=16)
+        self.buton_run.grid(row=2, column=14, padx=5, pady=2, ipadx=5, ipady=5)
 
     def main(self):
         self.creat()
