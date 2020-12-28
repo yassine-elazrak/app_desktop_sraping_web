@@ -75,9 +75,9 @@ class Check_box(Frame):
             self.vars.append(var)
             index += 1
         self.butt_set = Button(self.fram, text=  "set all       ", command=self.set_all, bg = "red" , width=16)
-        self.butt_set.grid(row=12, column=0 , padx=5,pady=5, ipadx=5, ipady=5)
+        self.butt_set.grid(row=15, column=0 , padx=5,pady=5, ipadx=5, ipady=5)
         self.butt_clear = Button(self.fram, text="clear all     ", command=self.clear_all, bg = "red" ,width=16)
-        self.butt_clear.grid(row=12, column=1, padx=5,pady=5, ipadx=5, ipady=5)
+        self.butt_clear.grid(row=15, column=1, padx=5,pady=5, ipadx=5, ipady=5)
 
     def ft_map(self):
         index = 0
@@ -105,7 +105,7 @@ class Check_box(Frame):
     def main(self):
         self.fram = LabelFrame(self.master, text="Enter Fieldnames:" ,bg="#091833" ,fg = "red",
 		  font =("Courier",19, "italic"))
-        self.fram.grid(row=0, column=9, columnspan=4, rowspan=16, \
+        self.fram.grid(row=0, column=9, columnspan=4, rowspan=11, \
                 sticky='NS', padx=5, pady=5)
 
         self.creat()
@@ -147,23 +147,23 @@ class List_box:
         self.field1.grid(row=0, columnspan=4, sticky='w', padx=8, pady=8)
         self.field1.configure(background="#091833")
 
-        self.label = Label(self.field1, text="     Search :", bg="#f2a343" , font =("Courier", 25, "italic"))
+        self.label = Label(self.field1, text="Search :", bg="#f2a343" , font =("Courier", 25, "italic"))
         self.label.grid(row=0, column=0)
         self.label.configure(background="#091833")
 
-        self.data = Input(self.field1, "enter key search")
-        self.data.grid(row=0, column=1, padx=5, pady=5)
+        self.data = Input(self.field1, "      enter key search")
+        self.data.grid(row=0, column=1, padx=3,pady=5, ipadx=88, ipady=11)
         self.button_add = Button(self.field1, text='add element', command=self.add)
-        self.button_add.grid(row=1, column=0, padx=5, pady=5)
+        self.button_add.grid(row=1, column=0,  padx=5,pady=1, ipadx=5, ipady=5)
         self.button_remove = Button(
         self.field1, text='remove element', command=self.remove)
-        self.button_remove.grid(row=1, column=1, padx=5, pady=5)
+        self.button_remove.grid(row=1, column=1,  padx=5,pady=1, ipadx=5, ipady=5)
 
         self.field2 = Frame(self.fram,bg="#091833")
-        self.field2.grid(row=0, column=5, columnspan=2, rowspan=3, \
+        self.field2.grid(row=0, column=5, columnspan=5, rowspan=3, \
                 sticky='NS', padx=5, pady=5)
         self.list_box = Listbox(self.field2, height=4,
-                                width=12,
+                                width=18,
                                 bg="#f2a343",
                                 activestyle='dotbox',
                                 font="Helvetica",
@@ -174,7 +174,7 @@ class List_box:
         self.fram = LabelFrame(
             self.master, text=" Enter Details For Words Search :" ,fg = "red",
 		  font =("Courier", 26, "italic"))
-        self.fram.grid(row=10, columnspan=6, sticky='w',
+        self.fram.grid(row=10, columnspan=8, sticky='w',
                        padx=5, pady=5, ipadx=5, ipady=5)
         self.fram.configure(background="#091833")
 

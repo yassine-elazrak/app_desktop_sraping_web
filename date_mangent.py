@@ -75,17 +75,16 @@ class DIR:
 
 
     def ft_name_file(self):#########
-        Label(self.fram, text="Name File Output", bg="#f2a343" , font =("Courier", 15, "italic")).grid(row=0, column=0, columnspan=2 ,sticky='w', padx=5, pady=2)
-        self.name_file=Input(self.fram, "name file")
-        self.name_file.grid(row=0, column=2,columnspan=2, padx=5, pady=5)
+        Label(self.fram, text="Name Of File Output  ", bg="#f2a343" , font =("Courier", 15, "italic")).grid(row=0, column=0, columnspan=2 ,sticky='w', padx=5, pady=2)
+        self.name_file=Input(self.fram, "      name file")
+        self.name_file.grid(row=0, column=7,  padx=3,pady=5, ipadx=88, ipady=11)
     def test_dir(self, data):
         return path.isdir(data)
 
     def ft_path(self):
-        Label(self.fram, text="Path of File Output", bg="#f2a343" , font =("Courier", 15, "italic")).grid(row=0, column=4, columnspan=4 ,sticky='W', padx=5, pady=2)
-        self.path_file=Input(self.fram, "path file", test=self.test_dir)
-        self.path_file.grid(row=0, column=11, padx=5, pady=5)
-
+        Label(self.fram, text="Path Of File Output  ", bg="#f2a343" , font =("Courier", 15, "italic")).grid(row=1, column=0, columnspan=4 ,sticky='W', padx=5, pady=2)
+        self.path_file=Input(self.fram, "       path file", test=self.test_dir)
+        self.path_file.grid(row=1, column=7,  padx=3,pady=5, ipadx=88, ipady=11)
     def clear_all(self):
         self.name_file.ft_delete(0, END)
         self.path_file.ft_delete(0, END)
@@ -101,8 +100,8 @@ class DIR:
             self.var_csv.set(0)
 
     def box_type_file(self):
-        Checkbutton(self.fram, text=str("Format csv ") ,variable=self.var_csv, command=self.change_csv, bg="#091833" , font =("Courier", 14, "italic")).grid(row=1, column=0, padx=0, pady=0)
-        Checkbutton(self.fram, text=str("Format josn") ,variable=self.var_json, command=self.change_json, bg="#091833" , font =("Courier", 14, "italic")).grid(row=1, column=4,columnspan=2, padx=0, pady=0)
+        Checkbutton(self.fram, text=str("Format csv ") ,variable=self.var_csv, command=self.change_csv, bg="#091833" , font =("Courier", 14, "italic")).grid(row=2, column=0, padx=0, pady=0)
+        Checkbutton(self.fram, text=str("Format josn") ,variable=self.var_json, command=self.change_json, bg="#091833" , font =("Courier", 14, "italic")).grid(row=2, column=5,columnspan=2, padx=0, pady=0)
         self.var_csv.set(1)
         
 
@@ -118,9 +117,9 @@ class DIR:
             name_file = self.path_file.get()
 
         if self.var_json.get() == 1:
-            path = path_file + "/" + self.name_file.get() + ".json"
+            path = path_file + "/" + name_file + ".json"
         else:
-            path = path_file + "/" + self.name_file.get() + ".csv"
+            path = path_file + "/" + name_file + ".csv"
         return path
         
     def main(self):
