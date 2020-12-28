@@ -4,6 +4,13 @@ except ImportError:
     from Tkinter import * 
 
 from tkcalendar import Calendar, DateEntry
+# class quitButton(Button):
+#     def __init__(self, parent):
+#         Button.__init__(self, parent)
+#         self['text'] = 'Good Bye'
+#         # Command to close the window (the destory method)
+#         self['command'] = parent.destroy
+#         self.pack(side=BOTTOM)
 
 class Time:
     def __init__(self, app):
@@ -21,22 +28,18 @@ class Time:
         self.var_hour_untill = StringVar()
         self.var_hour_untill.set(self.hour_untill)
 
-    def get_all(self):#"2019-07-01 00:00:00"
-        self.date_since = self.date_since + " " + self.hour_since + ":00:00"
-        self.date_untill = self.date_untill + " " + self.hour_untill + ":00:00"
-        print("data until", self.date_untill)
-        print("data since", self.date_since)
-        return(self.date_since, self.date_untill)
 
     def set_since(self):
         self.date_since =  self.cal_since.selection_get()
         self.var_since.set(self.date_since)
         # print("data since", self.date_since)
 
+#working hirr 
+
     def set_untill(self):
         self.date_untill =  self.cal_untill.selection_get()
         self.var_untill.set(self.date_untill)
-        # self.cal_untill.close()
+        # self.cal_untill.quit()
 
 
     def ft_calendar_since(self):
@@ -45,6 +48,7 @@ class Time:
         self.cal_since.pack()
         self.butt_cal = Button(self.cal_since, text="ok", command=self.set_since , bg='red', height = 1, width = 14)
         self.butt_cal.pack()
+        # quitButton(self.cal_since)#######test
 
     def ft_decrement_hour_since(self):
         hour = int(self.hour_since)
@@ -92,27 +96,47 @@ class Time:
         # self.butt_cal.size(height=10, width=100)
         self.butt_cal.pack()
 
+    def clear_all(self):
+        pass
+
+
+    def get_all(self):#"2019-07-01 00:00:00"
+        valuer_date_since = str(self.date_since) + " " + self.hour_since + ":00:00"
+        valuer_date_untill = str(self.date_untill) + " " + self.hour_untill + ":00:00"
+        print("data until",  valuer_date_untill)
+        print("data since",  valuer_date_since)
+        return  [ valuer_date_since, valuer_date_untill]
+
     def main(self):
-        self.fram = LabelFrame(self.master, text="Enter Details On Date :")
+        self.fram = LabelFrame(self.master, text=" Enter Details On Date :",  fg = "red",
+		 font =("Courier", 36, "italic"))
         self.fram.grid(row=0, columnspan=10, sticky='W', \
                  padx=5,pady=1, ipadx=5, ipady=5)
-        self.butt = Button(self.fram, text="date since", command=self.ft_calendar_since)
+        self.fram.configure(background="#091833")
+
+        self.butt = Button(self.fram, text="date since",  command=self.ft_calendar_since, bg = "blue")
         self.butt.grid(row=0, column=2,  padx=5,pady=1, ipadx=5, ipady=5)
-        Label(self.fram, textvariable=self.var_since).grid(row=0, column=4,  padx=5, pady=1, ipadx=5, ipady=5)
+        self.butt.configure(background="#091833")
+        Label(self.fram, textvariable=self.var_since , bg="#f2a343" , font =("Courier", 22, "italic")).grid(row=0, column=4,  padx=5, pady=1, ipadx=5, ipady=5)
 
         self.butt_inc = Button(self.fram, text="increment hour    ", command= self.ft_increment_hour_since)
         self.butt_inc.grid(row=0, column=5,  padx=5,pady=1, ipadx=5, ipady=5)
+
         self.butt_dec = Button(self.fram, text="decrement hour     ", command=self.ft_decrement_hour_since)
         self.butt_dec.grid(row=0, column=6,  padx=5,pady=1, ipadx=5, ipady=5)
-        Label(self.fram, textvariable=self.var_hour_since).grid(row=0, column=8,  padx=5,pady=1, ipadx=5, ipady=5)
+        Label(self.fram, textvariable=self.var_hour_since , bg="#f2a343" , font =("Courier", 22, "italic")).grid(row=0, column=8,  padx=5,pady=1, ipadx=5, ipady=5)
+        Label(self.fram, text="hour_since", bg="#091833" , font =("Courier", 22, "italic")).grid(row=0, column=10,  padx=5,pady=1, ipadx=5, ipady=5)
+        
 
-
-        self.butt = Button(self.fram, text="date untill", command=self.ft_calendar_untill)
+        self.butt = Button(self.fram, text="date until", command=self.ft_calendar_untill)
         self.butt.grid(row=1, column=2, padx=5,pady=1, ipadx=5, ipady=5)
-        Label(self.fram, textvariable=self.var_untill).grid(row=1, column=4,  padx=5, pady=1, ipadx=5, ipady=5)
-        self.butt_inc_mn = Button(self.fram, text="increment hour     ", command=self.ft_increment_hour_untill)
 
+        Label(self.fram, textvariable=self.var_untill, bg="#f2a343" , font =("Courier", 22, "italic")).grid(row=1, column=4,  padx=5, pady=1, ipadx=5, ipady=5)
+
+        self.butt_inc_mn = Button(self.fram, text="increment hour     ", command=self.ft_increment_hour_untill)
         self.butt_inc_mn.grid(row=1, column=5,  padx=5,pady=1, ipadx=5, ipady=5)
         self.butt_dec_mn = Button(self.fram, text="decrement hour     ", command=self.ft_decrement_hour_untill)
         self.butt_dec_mn.grid(row=1, column=6,  padx=5,pady=1, ipadx=5, ipady=5)
-        Label(self.fram, textvariable=self.var_hour_untill).grid(row=1, column=8,  padx=5,pady=1, ipadx=5, ipady=5)
+
+        Label(self.fram, textvariable=self.var_hour_untill, bg="#f2a343" , font =("Courier", 22, "italic")).grid(row=1, column=8,  padx=5,pady=1, ipadx=5, ipady=5)
+        Label(self.fram, text="hour_until", bg="#091833" , font =("Courier", 22, "italic")).grid(row=1, column=10,  padx=5,pady=1, ipadx=5, ipady=5)

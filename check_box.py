@@ -56,35 +56,44 @@ class Check_box(Frame):
         self.fields = []
 
     def creat(self):
-        self.field1 = Frame(self.fram)
+        self.field1 = Frame(self.fram,bg="#091833")
         self.field1.grid(row=0, columnspan=12, sticky='w', padx=4, pady=3)
+        # self.field1.configure(background="#091833")
+
         for name in self.fieldnames[0]:
             var = IntVar()
-            box = Checkbutton(self.field1, text=str(name) ,variable=var)
+            box = Checkbutton(self.field1, text=str(name) ,variable=var,bg="#091833", fg = "gray22", font =("Courier", 19, "italic"))
             box.pack(side=LEFT)
             self.vars.append(var)
 
-        self.field2 = Frame(self.fram)
+        self.field2 = Frame(self.fram,bg="#091833")
         self.field2.grid(row=1, columnspan=12, sticky='w', padx=4, pady=3)
+        # self.field2.configure(background="#091833")
+
         for name in self.fieldnames[1]:
             var = IntVar()
-            box = Checkbutton(self.field2, text=str(name) ,variable=var)
+            box = Checkbutton(self.field2, text=str(name) ,variable=var,bg="#091833", fg = "gray22", font =("Courier", 19, "italic"))
             box.pack(side=LEFT)
             self.vars.append(var)
 
-        self.field3 = Frame(self.fram)
+        self.field3 = Frame(self.fram,bg="#091833")
         self.field3.grid(row=2, columnspan=12, sticky='w', padx=4, pady=3)
+        # self.field3.configure(background="#091833")
+
+
         for name in self.fieldnames[2]:
             var = IntVar()
-            box = Checkbutton(self.field3, text=str(name),variable=var)
+            box = Checkbutton(self.field3, text=str(name),variable=var,bg="#091833", fg = "gray22", font =("Courier", 19, "italic"))
             box.pack(side=LEFT)
             self.vars.append(var)
 
-        self.field4 = Frame(self.fram)
+        self.field4 = Frame(self.fram, bg="#091833")
         self.field4.grid(row=3, columnspan=12, sticky='w', padx=4, pady=3)
+        # self.field4.configure(background="#091833")
+
         for name in self.fieldnames[3]:
-            var = IntVar()
-            box = Checkbutton(self.field4, text=str(name) ,variable=var)
+            var = IntVar()#####
+            box = Checkbutton(self.field4, text=str(name) ,variable=var,bg="#091833", fg = "gray22", font =("Courier", 19, "italic"))
             box.pack(side=LEFT)
             self.vars.append(var)
 
@@ -109,9 +118,12 @@ class Check_box(Frame):
 
     def main(self):
         self.fram = LabelFrame(
-            self.master, text="Enter Details For fieldnames :")
+            self.master, text="Enter Details For fieldnames :" ,bg="#091833" ,fg = "red",
+		 font =("Courier", 36, "italic"))
         self.fram.grid(row=6, columnspan=8, sticky='W',
                        padx=5, pady=5, ipadx=5, ipady=5)
+        # self.fram.configure(background="#091833")
+        
         self.creat()
 
 ##########################
@@ -134,7 +146,7 @@ class List_box:
 
     def remove(self):
         if self.Words:
-            self.list_box.ft_delete(END)
+            self.list_box.delete(END)
             self.Words.pop()
 
     def get_all(self):
@@ -147,25 +159,29 @@ class List_box:
 
 
     def creat(self):
-        self.field1 = Frame(self.fram)
+        self.field1 = Frame(self.fram ,bg="#091833")
         self.field1.grid(row=0, columnspan=8, sticky='w', padx=8, pady=8)
-        self.label = Label(self.field1, text="     Search :")
-        self.label.grid(row=0, column=0, columnspan=2,
-                        sticky='W', padx=5, pady=2)
+        self.field1.configure(background="#091833")
+
+        self.label = Label(self.field1, text="     Search :", bg="#f2a343" , font =("Courier", 25, "italic"))
+        self.label.grid(row=0, column=0,
+                        sticky='W', padx=0, pady=0)
+        self.label.configure(background="#091833")
+
         self.data = Input(self.field1, "enter key search")
         self.data.grid(row=0, column=1, padx=5, pady=5)
         self.button_add = Button(
-            self.field1, text='add element', command=self.add)
+        self.field1, text='add element', command=self.add)
         self.button_add.grid(row=1, column=0, padx=5, pady=5)
         self.button_remove = Button(
-            self.field1, text='remove element', command=self.remove)
+        self.field1, text='remove element', command=self.remove)
         self.button_remove.grid(row=1, column=1, padx=5, pady=5)
 
-        self.field2 = Frame(self.fram)
+        self.field2 = Frame(self.fram,bg="#091833")
         self.field2.grid(row=2, columnspan=8, sticky='w', padx=8, pady=8)
         self.list_box = Listbox(self.field2, height=2,
                                 width=50,
-                                bg="grey",
+                                bg="#f2a343",
                                 activestyle='dotbox',
                                 font="Helvetica",
                                 fg="yellow")
@@ -173,7 +189,10 @@ class List_box:
 
     def main(self):
         self.fram = LabelFrame(
-            self.master, text="Enter Details For Words Search :")
+            self.master, text=" Enter Details For Words Search :" ,fg = "red",
+		  font =("Courier", 36, "italic"))
         self.fram.grid(row=10, columnspan=10, sticky='w',
                        padx=5, pady=5, ipadx=5, ipady=5)
+        self.fram.configure(background="#091833")
+
         self.creat()

@@ -1,6 +1,5 @@
 from tkinter import *
-
-# from ft_twint import Config_twint
+from ft_twint import Config_twint
 from pprint import pprint
 
 
@@ -11,10 +10,10 @@ class Input(Entry):
         placeholder="PLACEHOLDER",
         color="grey",
         color_error="red3",
-        test=lambda a: a.isdigit(),
+        test=None ,
     ):
         super().__init__(master)
-
+        self["bg"] = "#091833"
         self.placeholder = placeholder
         self.placeholder_color = color
         self.default_fg_color = self["fg"]
@@ -25,11 +24,8 @@ class Input(Entry):
         self.bind("<FocusIn>", self.foc_in)
         self.bind("<FocusOut>", self.foc_out)
         self.bind("<KeyRelease>", self.release)
-
         self.put_placeholder()
 
-    # def enter(self, *args):
-    #     print("enter")
 
     def put_placeholder(self):
         self.insert(0, self.placeholder)
@@ -47,25 +43,19 @@ class Input(Entry):
             self.put_placeholder()
 
     def release(self, *args):
-        if not self.func_test(self.get()):
-            self["fg"] = self.color_error
-            self.data_is_valid = False
-        else:
-            self["fg"] = self.default_fg_color
-            self.data_is_valid = True
+        if self.func_test is not None:
+            if not self.func_test(self.get()):
+                self["fg"] = self.color_error
+                self.data_is_valid = False
+            else:
+                self["fg"] = self.default_fg_color
+                self.data_is_valid = True
 
     def foc_out(self, *args):
         self.cursor = False
         if not self.get():
             self.put_placeholder()
-        # else:
-        #     if not self.func_test(self.get()):
-        #         self['fg'] = self.color_error
-        #         self.data_is_valid = False
-        #     else:
-        #         self['fg'] = self.default_fg_color
-        #         self.data_is_valid = True
-
+       
 
 class Run:
     def __init__(self, apps=None, date=None, path=None, box=None, arena=None):
@@ -79,30 +69,30 @@ class Run:
         self.since = ""
         self.until = ""
         self.name_file = ""
-        self.path_file = ""
+       
+      
 
     def get_all(self):
-        pass
+       self.since, self.until =  self.date.get_all()
+       self.name_file =  self.path.get_all()
+       self.custom =  self.box.get_all()
+       self.keys =  self.arena.get_all()
+
+
 
     def clear_all(self):
-        # test
-        print("date  ==>", self.date.get_all())
-
         self.date.clear_all()
         self.path.clear_all()
         self.box.clear_all()
         self.arena.clear_all()
 
-    def valide(self):
-        pass
-
     def run(self):
-        pass
-        # self.c = Config_twint(self.keys , self.since , self.until, self.name_file , self.path_file, self.custom)
-        # self.c.run()
+        self.get_all()
+        self.c = Config_twint(self.keys , self.since , self.until, self.name_file , self.custom)
+        self.c.run()
 
     def creat(self):
-        self.buton = Frame(self.master)
+        self.buton = Frame(self.master, bg="#091833")
         self.buton.grid(row=18, columnspan=12, rowspan=3, sticky="SE")
         self.buton_clear = Button(
             self.buton, text="clear", command=self.clear_all, width=10
@@ -113,4 +103,3 @@ class Run:
 
     def main(self):
         self.creat()
-        # self.valide()

@@ -1,15 +1,13 @@
 
 from tkinter import *
-from date_mangent import date
+# from date_mangent import date
 from date_mangent import DIR
 from class_tools import Run
 from check_box import Check_box
 from check_box import List_box
 from time import sleep
 from calender import Time
-# except:
-#     print("error import")
-#     import sys ; sys.exit()
+from ft_twint import Config_twint
 
 font10="{Courier New} 10 normal"
 font11 = {"{U.S. 101} 30 bold"}
@@ -19,26 +17,23 @@ font16="{Segoe UI} 13 bold"
 
 apps = Tk()
 
-
 def main():
-    # label_date = date(apps)
-    # label_date.creat()
     clander= Time(apps)
     clander.main()
-
     path = DIR(apps)
     path.main()
     box = Check_box(apps)
     box.main()
     arena = List_box(apps)
     arena.main()
-    run=Run(apps, path, box, arena)
+    run=Run(apps,clander, path, box, arena)
     run.main()
+  
   
 
 def app_init():
     apps.title("extracting_tweets")
-    apps.geometry('720x580+10+10')#750x580+10+10
+    apps.geometry('920x680+10+10')#750x580+10+10 bg="#091833"
     apps.configure(background="#091833")
 
 
