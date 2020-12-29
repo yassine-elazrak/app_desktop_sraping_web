@@ -1,7 +1,9 @@
 from tkinter import *
 from ft_twint import Config_twint
 from pprint import pprint
-
+from threading import Timer, Thread
+from tkinter.messagebox import *
+import os
 
 class Input(Entry):
     def __init__(
@@ -75,6 +77,9 @@ class Run:
         self.since = ""
         self.until = ""
         self.name_file = ""
+        self.list_thread = []
+        self.list_file = []
+        self.list_time = []
        
       
 
@@ -83,6 +88,7 @@ class Run:
        self.name_file =  self.path.get_all()
        self.custom =  self.box.get_all()
        self.keys =  self.arena.get_all()
+       self.clear_all()
 
 
 
@@ -92,11 +98,49 @@ class Run:
         self.box.clear_all()
         self.arena.clear_all()
 
+    def exec(self):
+        for thread in self.list_thread:
+            thread.start()
+
+    def my_job(self, keys, since, until , outfile , custom):
+        self.twint = Config_twint(keys=keys , since=since , \
+            until=until, outfile=outfile , custom=custom)
+        self.twint.run()
+        print("my_job keys=>", keys)
+        print("my_job since=>", since)
+        print("my_job until=>", until)
+        print("my_job outfile=>", outfile)
+        print("my_job custom=>", custom)
+
+    def update_time(self):
+        self.list_time.append(self.since)
+        since, self.since = self.since.split("-", 1)
+        until , _ = self.until.split("-", 1)
+        self.diff_time = int(until) - int(since)
+        for i in range(1 , self.diff_time):
+            self.list_time.append(str(int(since) + i) + "-" + self.since)
+        self.list_time.append(self.until)
+        print("list_time",  self.list_time)
+
+
     def run(self):
         self.get_all()
-        self.twint = Config_twint(keys=self.keys , since=self.since , \
-            until=self.until, outfile=self.name_file , custom=self.custom)
+        self.update_time()
+        print("run keys", self.keys)
+        # os.makedirs("./.data",  0o755)
+        for i in range(0, len(self.list_time)):
+            self.since = self.list_time
+            for key in self.keys:
+                # name_file=key
+                name_file = "./." + key + ".csv"
+                self.list_file.append(name_file)
+                self.list_thread.append(Thread(target=self.my_job, args=[[key] , self.since , \
+                    self.until, name_file , [1,2,3, key]]))
+        self.exec()
+        self.twint = Config_twint()
         self.twint.run()
+
+            
 
     def creat(self):
         self.buton = Frame(self.master, bg="#091833")
@@ -109,4 +153,16 @@ class Run:
         self.buton_run.grid(row=2, column=14, padx=5, pady=2, ipadx=5, ipady=5)
 
     def main(self):
+        # Error("hello error test")
         self.creat()
+
+# class Error:
+#     def __init__(self, message="error try again"):
+#         # root = Tk()
+#         # root.withdraw()
+#         # showerror(title = "Error", message=message)
+#         # import tkMessageBox
+ 
+#        messagebox.showinfo("Title", "a Tk MessageBox")
+        # root.destroy()
+

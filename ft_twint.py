@@ -5,14 +5,15 @@ try:
 except RuntimeError:
     # print("error import library")
     import sys; sys.exit()
+from threading import Timer, Thread
 
 class Config_twint:
     def __init__(self, keys=[], since="2018-12-29",until="2019-01-01", outfile="tweets33", custom=[]):
-        print("keys ", keys)
-        print("since ", since)
-        print("until ", until)
-        print("outfile", outfile)
-        print("custom ", custom)  
+        print("yassine  ttkeys ", keys)
+        print("ttsince ", since)
+        print("ttuntil ", until)
+        print("ttoutfile", outfile)
+        print("ttcustom ", custom)  
   
         # self.name_file = outfile
         # self.keys = custom
@@ -20,6 +21,10 @@ class Config_twint:
         self.c.Search = keys
         self.c.Since = since
         self.c.Until = until
+
+        # self.c.Search = ["@RAM_Maroc"]#keys
+        # self.c.Since = "2019-11-01" ##since
+        # self.c.Until = "2019-11-09" #until
         # self.c.Lang = "en"
         self.c.Store_csv = True
         self.c.Output = outfile
@@ -38,7 +43,7 @@ class Config_twint:
 #         # self.slice_file()
 
 
-    
+
 # def main():
 #     run = Config_twint(keys=["RAM_Maroc"],custom=["id",
 #             "conversation_id",

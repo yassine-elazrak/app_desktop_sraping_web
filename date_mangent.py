@@ -24,6 +24,7 @@ class DIR:
         Label(self.fram, text="Path Of File Output  ", bg="#f2a343" , font =("Courier", 15, "italic")).grid(row=1, column=0, columnspan=4 ,sticky='W', padx=5, pady=2)
         self.path_file=Input(self.fram, "       path file", test=self.test_dir)
         self.path_file.grid(row=1, column=7,  padx=3,pady=5, ipadx=88, ipady=11)
+        
     def clear_all(self):
         self.name_file.ft_delete(0, END)
         self.path_file.ft_delete(0, END)
@@ -48,20 +49,23 @@ class DIR:
 
         path_file = "."
         name_file = "tweets_twitter"
-        if self.path_file.get() and os.path.isdir(self.path_file.get()):
+        # print("name ---{",self.name_file.get(),"}")
+        # print("path-----{",self.path_file,"}")
+        if  self.path_file.get() and os.path.isdir(self.path_file.get()) and self.path_file != "path file":
             path_file = self.path_file.get()
     
-        print("path_file", "|",path_file , "|")
+        # print("path_file", "|",path_file , "|")
         
-        if self.name_file.get():
+        if  self.name_file.get() and  not "name file" in self.name_file.get() :
             name_file = self.name_file.get()
 
-        print("name_file","|", name_file, "|")
+        # print("name_file","|",name_file, "|")
         if self.var_json.get() == 1:
             path_file = path_file + "/" + name_file + ".json"
         else:
             path_file = path_file + "/" + name_file + ".csv"
-        print("path->>\n", "|",path_file , "|")
+        # print("path->>", "|",path_file , "|")
+
         return path_file
         
     def main(self):

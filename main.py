@@ -8,6 +8,7 @@ from check_box import List_box
 from time import sleep
 from calender import Time
 from ft_twint import Config_twint
+from threading import Timer, Thread
 
 font10="{Courier New} 10 normal"
 font11 = {"{U.S. 101} 30 bold"}
