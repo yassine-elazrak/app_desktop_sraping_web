@@ -88,7 +88,7 @@ class Run:
        self.name_file =  self.path.get_all()
        self.custom =  self.box.get_all()
        self.keys =  self.arena.get_all()
-       self.clear_all()
+    #    self.clear_all()
 
 
 
@@ -103,14 +103,14 @@ class Run:
             thread.start()
 
     def my_job(self, keys, since, until , outfile , custom):
-        self.twint = Config_twint(keys=keys , since=since , \
-            until=until, outfile=outfile , custom=custom)
-        self.twint.run()
         print("my_job keys=>", keys)
         print("my_job since=>", since)
         print("my_job until=>", until)
         print("my_job outfile=>", outfile)
         print("my_job custom=>", custom)
+        self.twint = Config_twint(keys=keys , since=since , \
+            until=until, outfile=outfile , custom=custom)
+        self.twint.run()
 
     def update_time(self):
         self.list_time.append(self.since)
@@ -128,17 +128,19 @@ class Run:
         self.update_time()
         print("run keys", self.keys)
         # os.makedirs("./.data",  0o755)
-        for i in range(0, len(self.list_time)):
-            self.since = self.list_time
+        for i in range(0, len(self.list_time) - 1):
+            self.since = self.list_time[i]
+            self.until = self.list_time[i + 1]
+            print("year", self.since, "----", self.until, self.keys)
             for key in self.keys:
                 # name_file=key
-                name_file = "./." + key + ".csv"
-                self.list_file.append(name_file)
-                self.list_thread.append(Thread(target=self.my_job, args=[[key] , self.since , \
-                    self.until, name_file , [1,2,3, key]]))
-        self.exec()
-        self.twint = Config_twint()
-        self.twint.run()
+                name_file = "./."  +self.since + key + ".csv"
+                print(name_file)
+                # self.list_file.append(name_file)
+                # self.list_thread.append(Thread(target=self.my_job, args=[[key] , self.since , \
+                #     self.until, name_file , [1,2,3, key]]))
+        # self.exec()
+        # self.list_time.clear()
 
             
 
