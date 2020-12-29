@@ -3,9 +3,9 @@
 block_cipher = None
 
 
-a = Analysis(['main.py'],
+a = Analysis(['part_manager.py'],
              pathex=['/Users/yelazrak/Desktop/apps_desktop'],
-             binaries=[],
+             binaries=[('/System/Library/Frameworks/Tk.framework/Tk', 'tk'), ('/System/Library/Frameworks/Tcl.framework/Tcl', 'tcl')],
              datas=[],
              hiddenimports=[],
              hookspath=[],
@@ -23,7 +23,7 @@ exe = EXE(pyz,
           a.zipfiles,
           a.datas,
           [],
-          name='main',
+          name='part_manager',
           debug=False,
           bootloader_ignore_signals=False,
           strip=False,

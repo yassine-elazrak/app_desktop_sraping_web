@@ -7,22 +7,23 @@ except RuntimeError:
     import sys; sys.exit()
 
 class Config_twint:
-    def __init__(self, keys=[], since="2019-12-29",until="2020-01-01", outfile="tweets33", custom=[]):
-        # print("keys ", keys)
-        # print("since ", since)
-        # print("until ", until)
-        # print("outfile ", outfile)
-        # print("custom ", custom)  
+    def __init__(self, keys=[], since="2018-12-29",until="2019-01-01", outfile="tweets33", custom=[]):
+        print("keys ", keys)
+        print("since ", since)
+        print("until ", until)
+        print("outfile", outfile)
+        print("custom ", custom)  
   
-        self.name_file = outfile
-        self.keys = custom
+        # self.name_file = outfile
+        # self.keys = custom
         self.c = twint.Config()
         self.c.Search = keys
         self.c.Since = since
         self.c.Until = until
         # self.c.Lang = "en"
         self.c.Store_csv = True
-        self.c.Output = "tweets.csv" 
+        self.c.Output = outfile
+        # "tweets.csv" 
         self.c.Hide_output = True
 
     # def slice_file(self):
@@ -38,16 +39,16 @@ class Config_twint:
 
 
     
-def main():
-    run = Config_twint(keys=["RAM_Maroc"],custom=["id",
-            "conversation_id",
-            "created_at",
-            "date",
-            "time",
-            "timezone",
-            "user_id",
-            "username",
-            "name"])
-    run.run()
-if __name__ == "__main__":
-    main()
+# def main():
+#     run = Config_twint(keys=["RAM_Maroc"],custom=["id",
+#             "conversation_id",
+#             "created_at",
+#             "date",
+#             "time",
+#             "timezone",
+#             "user_id",
+#             "username",
+#             "name"])
+#     run.run()
+# if __name__ == "__main__":
+#     main()

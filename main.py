@@ -15,6 +15,12 @@ font15 = {"{Al-Aramco 11 bold}"}
 font16="{Segoe UI} 13 bold"
 # fg= "steel blue"  "#f2a343" "bg#d9d9d9" "#c60000"
 
+
+####key___["Royal Air Maroc" , "@RAM_Maroc",    "@RAM_Maroc", \
+#   "royalairmaroc", "الخطوط المغربيه" , "#الخطوط_الملكية_المغربية "\
+#  , "الخطوط الملكية المغربية"    , "لارام",  " لارام"\
+# ,"الخطوط_الملكية_المغربية" ]
+
 apps = Tk()
 
 def main():
@@ -34,7 +40,7 @@ def main():
 
 def app_init():
     apps.title("extracting_tweets")
-    apps.geometry('1050x560+0+0')#750x580+10+10 bg="#091833"
+    apps.geometry('1200x590+0+0')#750x580+10+10 bg="#091833"
     apps.configure(background="#091833")
 
 

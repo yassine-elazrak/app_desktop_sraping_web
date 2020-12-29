@@ -125,15 +125,16 @@ class List_box:
     def add(self):
         if self.data.get():
             self.Words.append(self.data.get())
-            self.list_box.insert(END, self.data.get())
+            self.list_box.insert(0, self.data.get())
             self.data.ft_delete(0, END)
 
     def remove(self):
         if self.Words:
-            self.list_box.delete(END)
+            self.list_box.delete(0)
             self.Words.pop()
 
     def get_all(self):
+        print("keys=>>", self.Words)
         return self.Words
         
     def clear_all(self):

@@ -46,20 +46,23 @@ class DIR:
 
     def get_all(self):
 
+        path_file = "."
+        name_file = "tweets_twitter"
         if self.path_file.get() and os.path.isdir(self.path_file.get()):
             path_file = self.path_file.get()
-        else:
-            path_file = "."
-        if not self.name_file.get():
-            name_file = "tweets_twitter"
-        else:
+    
+        print("path_file", "|",path_file , "|")
+        
+        if self.name_file.get():
             name_file = self.name_file.get()
 
+        print("name_file","|", name_file, "|")
         if self.var_json.get() == 1:
-            path = path_file + "/" + name_file + ".json"
+            path_file = path_file + "/" + name_file + ".json"
         else:
-            path = path_file + "/" + name_file + ".csv"
-        return path
+            path_file = path_file + "/" + name_file + ".csv"
+        print("path->>\n", "|",path_file , "|")
+        return path_file
         
     def main(self):
         self.fram = LabelFrame(self.master, text=" Enter Details For Output :" ,fg = "red", font =("Courier", 26, "italic"))

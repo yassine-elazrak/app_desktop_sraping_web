@@ -3,3 +3,8 @@ __pyca*
 node*
 tes*
 twint
+buil*
+.vsco*
+.DS*
+*.spec
+*.csv

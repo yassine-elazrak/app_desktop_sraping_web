@@ -94,8 +94,9 @@ class Run:
 
     def run(self):
         self.get_all()
-        self.c = Config_twint(self.keys , self.since , self.until, self.name_file , self.custom)
-        # self.c.run()
+        self.twint = Config_twint(keys=self.keys , since=self.since , \
+            until=self.until, outfile=self.name_file , custom=self.custom)
+        self.twint.run()
 
     def creat(self):
         self.buton = Frame(self.master, bg="#091833")
