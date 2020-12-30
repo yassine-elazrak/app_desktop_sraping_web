@@ -26,11 +26,12 @@ class Config_twint:
         # self.c.Since = "2019-11-01" ##since
         # self.c.Until = "2019-11-09" #until
         # self.c.Lang = "en"
+        self.c.Limit = 100
         self.c.Store_csv = True
         self.c.Output = outfile
         # "tweets.csv" 
         self.c.Hide_output = True
-
+        
     # def slice_file(self):
     #     df = pd.read_csv(".tweets.csv")
     #     new_f = df[self.keys]

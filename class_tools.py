@@ -4,6 +4,10 @@ from pprint import pprint
 from threading import Timer, Thread
 from tkinter.messagebox import *
 import os
+from tempfile import TemporaryDirectory 
+from pathlib import Path
+from touch import touch 
+
 
 class Input(Entry):
     def __init__(
@@ -128,19 +132,26 @@ class Run:
         self.update_time()
         print("run keys", self.keys)
         # os.makedirs("./.data",  0o755)
-        for i in range(0, len(self.list_time) - 1):
-            self.since = self.list_time[i]
-            self.until = self.list_time[i + 1]
-            print("year", self.since, "----", self.until, self.keys)
-            for key in self.keys:
-                # name_file=key
-                name_file = "./."  +self.since + key + ".csv"
-                print(name_file)
-                # self.list_file.append(name_file)
-                # self.list_thread.append(Thread(target=self.my_job, args=[[key] , self.since , \
-                #     self.until, name_file , [1,2,3, key]]))
-        # self.exec()
-        # self.list_time.clear()
+        with TemporaryDirectory() as temp_dir:
+            print("name tempfile", temp_dir)
+            for i in range(0, len(self.list_time) - 1):
+                self.since = self.list_time[i]
+                self.until = self.list_time[i + 1]
+                print("year", self.since, "----", self.until, self.keys)
+                for key in self.keys:
+                    # name_file=key
+                    name_file = temp_dir + "/." +self.since + key + ".csv"
+                    print("pattt = >>")
+                    print(name_file)
+                    touch(name_file)
+
+                    self.list_file.append(name_file)
+                    self.list_thread.append(Thread(target=self.my_job, args=[[key] , self.since , \
+                        self.until, name_file , [1,2,3, key]]))
+            # self.exec()
+            import time ; time.sleep(55)
+            self.list_time.clear()
+        print("end --------")
 
             
 
