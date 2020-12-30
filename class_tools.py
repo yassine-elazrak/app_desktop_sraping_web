@@ -1,5 +1,5 @@
 from tkinter import *
-from ft_twint import Config_twint
+# from ft_twint import Config_twint
 from pprint import pprint
 from threading import Timer, Thread
 from tkinter.messagebox import *
@@ -7,7 +7,7 @@ import os
 from tempfile import TemporaryDirectory 
 from pathlib import Path
 from touch import touch 
-
+import tkinter.font as TkFont
 
 class Input(Entry):
     def __init__(
@@ -19,7 +19,7 @@ class Input(Entry):
         test=None ,
     ):
         super().__init__(master)
-        self["bg"] = "#091833"
+        self["bg"] = "snow"
         self["fg"] = "blue"
         # height=100)
         self.placeholder = placeholder
@@ -84,6 +84,8 @@ class Run:
         self.list_thread = []
         self.list_file = []
         self.list_time = []
+        self.font_butt = TkFont.Font(family='Helvetica', size=10, weight=TkFont.BOLD)
+
        
       
 
@@ -112,9 +114,9 @@ class Run:
         print("my_job until=>", until)
         print("my_job outfile=>", outfile)
         print("my_job custom=>", custom)
-        self.twint = Config_twint(keys=keys , since=since , \
-            until=until, outfile=outfile , custom=custom)
-        self.twint.run()
+        # self.twint = Config_twint(keys=keys , since=since , \
+        #     until=until, outfile=outfile , custom=custom)
+        # self.twint.run()
 
     def update_time(self):
         self.list_time.append(self.since)
@@ -157,12 +159,12 @@ class Run:
 
     def creat(self):
         self.buton = Frame(self.master, bg="#091833")
-        self.buton.grid(row=18, columnspan=13, rowspan=3, sticky="SE")
+        self.buton.grid(row=8, columnspan=13, rowspan=3, sticky="SE")
         self.buton_clear = Button(
-            self.buton, text="clear", command=self.clear_all, width=16
+            self.buton, text="clear",font=self.font_butt, command=self.clear_all, bg="red", width=14
         )
         self.buton_clear.grid(row=2, column=12, padx=5,pady=2, ipadx=5, ipady=5)
-        self.buton_run = Button(self.buton, text="run", command=self.run, width=16)
+        self.buton_run = Button(self.buton, text="run",font=self.font_butt,bg="red", command=self.run, width=14)
         self.buton_run.grid(row=2, column=14, padx=5, pady=2, ipadx=5, ipady=5)
 
     def main(self):

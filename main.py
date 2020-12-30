@@ -7,8 +7,11 @@ from check_box import Check_box
 from check_box import List_box
 from time import sleep
 from calender import Time
-from ft_twint import Config_twint
+# from ft_twint import Config_twint
 from threading import Timer, Thread
+
+from tkinter import font as tkFont
+
 
 font10="{Courier New} 10 normal"
 font11 = {"{U.S. 101} 30 bold"}
@@ -25,6 +28,7 @@ font16="{Segoe UI} 13 bold"
 apps = Tk()
 
 def main():
+    helv36 = tkFont.Font(family='Helvetica', size=36, weight=tkFont.BOLD)
     clander= Time(apps)
     clander.main()
     path = DIR(apps)
@@ -35,6 +39,9 @@ def main():
     arena.main()
     run=Run(apps,clander, path, box, arena)
     run.main()
+    # btn1 = Button(text='btn1', font=helv36)
+    # btn1.grid(row=0, column=0, columnspan=1, sticky='EWNS')
+
    
   
   
