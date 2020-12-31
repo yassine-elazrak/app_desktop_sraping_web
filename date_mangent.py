@@ -45,7 +45,7 @@ class DIR:
         self.var_json.set(0)
         self.var_csv.set(0)
 
-    def change_csv(self):
+    def change_csv(self):####hello
         if self.var_json.get() == 1:
             self.var_json.set(0)
 
