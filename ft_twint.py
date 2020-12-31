@@ -1,11 +1,24 @@
-try:
-    import twint
-    import datetime
-    # import pandas as pd
-except RuntimeError:
-    # print("error import library")
-    import sys; sys.exit()
-from threading import Timer, Thread
+# try:
+import twint
+import datetime
+import pandas as pd
+# except RuntimeError:
+#     import sys; sys.exit() from threading import Timer, Thread
+
+class File:
+    def __init__(self, list_file=[],name_file=""):
+        self.list_file = list_file
+        self.name_file = name_file
+
+    def sum_file(self):
+        data_files = []
+        for name in self.list_file:
+            df = dp.read_csv(name)
+            data_files.append(df)
+        df_all = pd.concat(data_files)
+        df.to_csv(self.list_file, index=False)
+
+
 
 class Config_twint:
     def __init__(self, keys=[], since="2018-12-29",until="2019-01-01", outfile="tweets33", custom=[]):
