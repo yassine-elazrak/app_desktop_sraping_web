@@ -126,7 +126,7 @@ class Run:
         self.list_time.append(self.until)
         print("list_time",  self.list_time)
 
-
+    
     def run(self):
         self.get_all()
         self.update_time()
