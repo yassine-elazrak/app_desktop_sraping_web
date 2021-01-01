@@ -38,7 +38,10 @@ def main():
     arena = List_box(apps)
     arena.main()
     run=Run(apps,clander, path, box, arena)
-    run.main()
+    print("run")
+    Thread(target=run.main).start()
+    print("end _run")
+
     # btn1 = Button(text='btn1', font=helv36)
     # btn1.grid(row=0, column=0, columnspan=1, sticky='EWNS')
 
@@ -48,7 +51,7 @@ def main():
 
 def app_init():
     apps.title("extracting_tweets")
-    apps.geometry('1200x590+0+0')#750x580+10+10 bg="#091833"
+    apps.geometry('950x530+0+0')#750x580+10+10 bg="#091833"  1200x590+0+0'
     apps.configure(background="#091833")
 
 

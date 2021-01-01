@@ -39,7 +39,7 @@ class Config_twint:
         # self.c.Since = "2019-11-01" ##since
         # self.c.Until = "2019-11-09" #until
         # self.c.Lang = "en"
-        self.c.Limit = 100
+        # self.c.Limit = 100
         self.c.Store_csv = True
         self.c.Output = outfile
         # "tweets.csv" 
@@ -71,3 +71,15 @@ class Config_twint:
 #     run.run()
 # if __name__ == "__main__":
 #     main()
+
+# import twint
+
+# c = twint.Config()
+# c.Username = "noneprivacy"
+# c.Limit = 100
+# c.Store_csv = True
+# c.Output = "none.csv"
+# c.Lang = "en"
+# # c.Translate = True
+# # c.TranslateDest = "it"
+# twint.run.Search(c)

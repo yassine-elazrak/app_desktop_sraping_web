@@ -1,5 +1,5 @@
 from tkinter import *
-# from ft_twint import Config_twint
+from ft_twint import Config_twint
 from pprint import pprint
 from threading import Timer, Thread
 from tkinter.messagebox import *
@@ -8,6 +8,9 @@ from tempfile import TemporaryDirectory
 from pathlib import Path
 from touch import touch 
 import tkinter.font as TkFont
+import shutil
+import pandas as pd
+
 
 class Input(Entry):
     def __init__(
@@ -67,6 +70,19 @@ class Input(Entry):
 # class BUTTON(Button):
 #     def __init__(self, *args):
 #         super.__init__(*args)
+class DIR:
+    def __init__(self, list_file=[]):
+        self.list_file = list_file
+        self.name = ".files"
+        os.makedirs(self.name,exist_ok=True)
+
+
+    def __enter__(self):
+        return self.name
+    def __exit__(self,exc_type, exc_value, traceback):
+        # os.rmdir(self.name)
+        # shutil.rmtree(self.name)
+        pass
 
 
 class Run:
@@ -84,6 +100,7 @@ class Run:
         self.list_thread = []
         self.list_file = []
         self.list_time = []
+        self.start = True
         self.font_butt = TkFont.Font(family='Helvetica', size=10, weight=TkFont.BOLD)
 
        
@@ -114,9 +131,19 @@ class Run:
         print("my_job until=>", until)
         print("my_job outfile=>", outfile)
         print("my_job custom=>", custom)
-        # self.twint = Config_twint(keys=keys , since=since , \
-        #     until=until, outfile=outfile , custom=custom)
-        # self.twint.run()
+        self.twint = Config_twint(keys=keys , since=since , \
+            until=until, outfile=outfile , custom=custom)
+        self.twint.run()
+
+    def join_files(self):
+        list_df = []
+        for name_file in self.list_file:
+            df  = pd.read_csv(name_file)
+            list_df.append(df)
+        
+        df_all = pd.concat(list_df)
+        pd.csv_to(self.name_file)
+
 
     def update_time(self):
         self.list_time.append(self.since)
@@ -128,32 +155,42 @@ class Run:
         self.list_time.append(self.until)
         print("list_time",  self.list_time)
 
+    def wait_thread(self):
+        for thread in self.list_thread:
+            thread.join()
+        self.list_thread.clear()
+        self.start = True
+        print("\n\n\n\n\n   finish thread    \n\n\n\n")
     
-    def run(self):
+    def task_thread(self):
         self.get_all()
         self.update_time()
-        print("run keys", self.keys)
-        # os.makedirs("./.data",  0o755)
-        with TemporaryDirectory() as temp_dir:
-            print("name tempfile", temp_dir)
+        with  DIR() as temp_dir:
             for i in range(0, len(self.list_time) - 1):
                 self.since = self.list_time[i]
                 self.until = self.list_time[i + 1]
-                print("year", self.since, "----", self.until, self.keys)
                 for key in self.keys:
-                    # name_file=key
-                    name_file = temp_dir + "/." +self.since + key + ".csv"
-                    print("pattt = >>")
-                    print(name_file)
-                    touch(name_file)
+                    name_file = self.since + key + ".csv"
+                    name_path =  os.path.join(temp_dir , name_file)
+                    touch(name_path)
+                    self.list_file.append(name_path)
 
-                    self.list_file.append(name_file)
                     self.list_thread.append(Thread(target=self.my_job, args=[[key] , self.since , \
-                        self.until, name_file , [1,2,3, key]]))
-            # self.exec()
-            import time ; time.sleep(55)
+                        self.until, name_path , [1,2,3, key]]))
+            self.exec()
+            print("\\n\n\n\n\nend --------  threading         ")
+            self.wait_thread()
             self.list_time.clear()
-        print("end --------")
+            # self.list_thread.clear()
+    
+    def run(self):
+        if self.start == True:
+            self.start = False
+            Thread(target=self.task_thread).start()
+        else:
+            print("waitng  is not finish frsit search\n")
+
+        
 
             
 
