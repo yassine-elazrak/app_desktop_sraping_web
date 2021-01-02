@@ -80,6 +80,7 @@ class DIR:
 
     def __enter__(self):
         return self.name
+        
     def __exit__(self,exc_type, exc_value, traceback):
         # os.rmdir(self.name)
         shutil.rmtree(self.name)
@@ -177,6 +178,7 @@ class Run:
                 for key in self.keys:
                     name_file = self.since + key + ".csv"
                     name_path =  os.path.join(temp_dir , name_file)
+                    name_path = name_path.replace(" ","_").replace(":","_")
                     touch(name_path)
                     with open(name_path,'a+') as file_csv:
                         head = csv.DictWriter(file_csv, fieldnames=header)

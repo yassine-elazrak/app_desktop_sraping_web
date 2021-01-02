@@ -19,6 +19,8 @@ font15 = {"{Al-Aramco 11 bold}"}
 font16="{Segoe UI} 13 bold"
 # fg= "steel blue"  "#f2a343" "bg#d9d9d9" "#c60000"
 
+# pip3 install --user --upgrade git+https://github.com/twintproject/twint.git@origin/master#egg=twint
+
 ### pyinstaller --onefile --windowed part_manager.py
 ### pyinstaller --onefile --add-binary='/System/Library/Frameworks/Tk.framework/Tk':'tk' --add-binary='/System/Library/Frameworks/Tcl.framework/Tcl':'tcl' part_manager.py
 
@@ -54,7 +56,7 @@ def main():
 
 def app_init():
     apps.title("extracting_tweets")
-    apps.geometry('950x530+0+0')#750x580+10+10 bg="#091833"  1200x590+0+0'
+    apps.geometry( '1200x590+0+0')#'950x530+0+0')#750x580+10+10 bg="#091833"  1200x590+0+0'
     apps.configure(background="#091833")
 
 

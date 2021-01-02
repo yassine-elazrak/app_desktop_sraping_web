@@ -1,12 +1,12 @@
 
-from nltk.corpus import stopwords  
-from nltk.tokenize import word_tokenize  
+# from nltk.corpus import stopwords  
+# from nltk.tokenize import word_tokenize  
 
-stop_words = stopwords.words('english')  
-from nltk.stem import SnowballStemmer
-snowball_stemmer = SnowballStemmer('english')
-# snowball_stemmer.stem(word)
-print(dir(snowball_stemmer)) 
+# stop_words = stopwords.words('english')  
+# from nltk.stem import SnowballStemmer
+# snowball_stemmer = SnowballStemmer('english')
+# # snowball_stemmer.stem(word)
+# print(dir(snowball_stemmer)) 
 # example_sent = """This is a sample sentence, 
 #                   showing off the stop words filtration."""
   
@@ -23,7 +23,8 @@ print(dir(snowball_stemmer))
   
 # print(word_tokens)  
 # print(filtered_sentence)
-
+name = ".files/aaadodo2 2"
+open(name, 'a+')
 
 
 

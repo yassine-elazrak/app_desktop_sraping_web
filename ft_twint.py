@@ -31,11 +31,11 @@ class File:
 
 class Config_twint:
     def __init__(self, keys=[], since="2018-12-29",until="2019-01-01", outfile="tweets33", custom=[]):
-        # print("yassine  ttkeys ", keys)
-        # print("ttsince ", since)
-        # print("ttuntil ", until)
-        # print("ttoutfile", outfile)
-        # print("ttcustom ", custom)  
+        print("yassine  ttkeys ", keys)
+        print("ttsince ", since)
+        print("ttuntil ", until)
+        print("ttoutfile", outfile)
+        print("ttcustom ", custom)  
   
         # self.name_file = outfile
         # self.keys = custom
@@ -44,7 +44,7 @@ class Config_twint:
         self.c.Since = since
         self.c.Until = until
 
-        # self.c.Search = ["@RAM_Maroc"]#keys
+        # self.c.Search = ["RAM_Maroc"]#keys
         # self.c.Since = "2019-11-01" ##since
         # self.c.Until = "2019-11-09" #until
         # self.c.Lang = "en"
