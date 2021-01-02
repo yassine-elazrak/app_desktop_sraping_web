@@ -18,9 +18,10 @@ font11 = {"{U.S. 101} 30 bold"}
 font15 = {"{Al-Aramco 11 bold}"}
 font16="{Segoe UI} 13 bold"
 # fg= "steel blue"  "#f2a343" "bg#d9d9d9" "#c60000"
-
+# pyinstaller.exe --onefile -w --hiddenimport=babel.numbers
 # pip3 install --user --upgrade git+https://github.com/twintproject/twint.git@origin/master#egg=twint
-
+# pyinstaller --onefile --windowed --icon assets\zahlen_und_code.icn main.py
+# 
 ### pyinstaller --onefile --windowed part_manager.py
 ### pyinstaller --onefile --add-binary='/System/Library/Frameworks/Tk.framework/Tk':'tk' --add-binary='/System/Library/Frameworks/Tcl.framework/Tcl':'tcl' part_manager.py
 
