@@ -1,5 +1,5 @@
 from tkinter import *
-from ft_twint import Config_twint
+from ft_twint import Config_twint , File
 from pprint import pprint
 from threading import Timer, Thread
 from tkinter.messagebox import *
@@ -10,6 +10,7 @@ from touch import touch
 import tkinter.font as TkFont
 import shutil
 import pandas as pd
+import csv
 
 
 class Input(Entry):
@@ -81,8 +82,7 @@ class DIR:
         return self.name
     def __exit__(self,exc_type, exc_value, traceback):
         # os.rmdir(self.name)
-        # shutil.rmtree(self.name)
-        pass
+        shutil.rmtree(self.name)
 
 
 class Run:
@@ -161,10 +161,15 @@ class Run:
         self.list_thread.clear()
         self.start = True
         print("\n\n\n\n\n   finish thread    \n\n\n\n")
+        File(self.list_file,self.name_file).sum_file()
     
     def task_thread(self):
         self.get_all()
         self.update_time()
+        header = ["id","conversation_id","created_at","date,time","timezone","user_id","username","name","place","tweet","language","mentions","urls,photos",\
+            "replies_count","retweets_count","likes_count","hashtags",\
+                "cashtags","link","retweet","quote_url","video","thumbnail","near","geo","source",\
+                "user_rt_id","user_rt","retweet_id","reply_to","retweet_date","translate","trans_src","trans_dest"]
         with  DIR() as temp_dir:
             for i in range(0, len(self.list_time) - 1):
                 self.since = self.list_time[i]
@@ -173,6 +178,9 @@ class Run:
                     name_file = self.since + key + ".csv"
                     name_path =  os.path.join(temp_dir , name_file)
                     touch(name_path)
+                    with open(name_path,'a+') as file_csv:
+                        head = csv.DictWriter(file_csv, fieldnames=header)
+                        head.writeheader()
                     self.list_file.append(name_path)
 
                     self.list_thread.append(Thread(target=self.my_job, args=[[key] , self.since , \

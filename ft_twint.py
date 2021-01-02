@@ -11,22 +11,31 @@ class File:
         self.name_file = name_file
 
     def sum_file(self):
-        data_files = []
-        for name in self.list_file:
-            df = dp.read_csv(name)
-            data_files.append(df)
-        df_all = pd.concat(data_files)
-        df.to_csv(self.list_file, index=False)
+        # with open(self.name_file, 'a') as out:
+        #     for name in self.list_file:
+        #         with open(name, 'r+') as data:
+        #             data.__next__()
+        #             for line in data:
+        #                 out.write(line)
+
+        # data_files = []
+        # for name in self.list_file:
+        #     df = pd.read_csv(name)
+        #     data_files.append(df)
+        # df_all = pd.concat(data_files)
+        # df_all.to_csv(self.name_file, index=False)
+       data_csv = pd.concat( [ pd.read_csv(f) for f in self.list_file] )
+       data_csv.to_csv(self.name_file , index=False )
 
 
 
 class Config_twint:
     def __init__(self, keys=[], since="2018-12-29",until="2019-01-01", outfile="tweets33", custom=[]):
-        print("yassine  ttkeys ", keys)
-        print("ttsince ", since)
-        print("ttuntil ", until)
-        print("ttoutfile", outfile)
-        print("ttcustom ", custom)  
+        # print("yassine  ttkeys ", keys)
+        # print("ttsince ", since)
+        # print("ttuntil ", until)
+        # print("ttoutfile", outfile)
+        # print("ttcustom ", custom)  
   
         # self.name_file = outfile
         # self.keys = custom
@@ -39,7 +48,7 @@ class Config_twint:
         # self.c.Since = "2019-11-01" ##since
         # self.c.Until = "2019-11-09" #until
         # self.c.Lang = "en"
-        # self.c.Limit = 100
+        self.c.Limit = 100
         self.c.Store_csv = True
         self.c.Output = outfile
         # "tweets.csv" 
@@ -52,7 +61,7 @@ class Config_twint:
 
 
     def run(self):
-        pass
+        # pass
         twint.run.Search(self.c)
 #         # self.slice_file()
 
@@ -83,3 +92,25 @@ class Config_twint:
 # # c.Translate = True
 # # c.TranslateDest = "it"
 # twint.run.Search(c)
+# list_file = [ ".files/2017-11-23 12:00:00RAM_Maroc.csv",".files/2018-11-23 12:00:00RAM_Maroc.csv",\
+#     ".files/2019-11-23 12:00:00RAM_Maroc.csv" ,".files/2019-12-27 12:00:00RAM_Maroc.csv" ]
+# File(list_file,"./data_all.csv").sum_file()
+# combined_csv = pd.concat( [ pd.read_csv(f) for f in list_file] )
+# combined_csv.to_csv( "combined_csv.csv", index=False )
+# out = open("out_all.csv", 'a')
+# for line in open(list_file[0]):
+#     out.write(line)
+# for i in range(1, len(list_file)):
+#     data = open(list_file[i], "r+")
+#     data.__next__()
+#     for line in  data:
+#         out.write(line)
+#     data.close()
+# out.close()
+# with open("lolo.csv", 'a') as out:
+#     for name in list_file:
+#         with open(name, 'r+') as data:
+#             data.__next__()
+#             for line in data:
+#                 out.write(line)
+
