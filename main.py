@@ -19,6 +19,9 @@ font15 = {"{Al-Aramco 11 bold}"}
 font16="{Segoe UI} 13 bold"
 # fg= "steel blue"  "#f2a343" "bg#d9d9d9" "#c60000"
 
+### pyinstaller --onefile --windowed part_manager.py
+### pyinstaller --onefile --add-binary='/System/Library/Frameworks/Tk.framework/Tk':'tk' --add-binary='/System/Library/Frameworks/Tcl.framework/Tcl':'tcl' part_manager.py
+
 
 ####key___["Royal Air Maroc" , "@RAM_Maroc",    "@RAM_Maroc", \
 #   "royalairmaroc", "الخطوط المغربيه" , "#الخطوط_الملكية_المغربية "\
