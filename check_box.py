@@ -72,11 +72,11 @@ class Check_box(Frame):
             self.field1 = Frame(self.fram,bg="#091833")
             self.field1.grid(row=index, columnspan=2, sticky='w', padx=2, pady=4)  
             var = IntVar()
-            box = Checkbutton(self.field1, text=str(name[0]) ,variable=var,bg="#091833", fg = "snow", font =("Courier", 12, "italic"))
+            box = Checkbutton(self.field1, text=str(name[0]) ,variable=var,bg="#091833", fg = "purple", font =("Courier", 12, "italic"))
             box.pack(side=LEFT)
             self.vars.append(var)
             var = IntVar()
-            box = Checkbutton(self.field1, text=str(name[1]) ,variable=var,bg="#091833", fg = "snow", font =("Courier", 12, "italic"))
+            box = Checkbutton(self.field1, text=str(name[1]) ,variable=var,bg="#091833", fg = "purple", font =("Courier", 12, "italic"))
             box.pack(side=LEFT)
             self.vars.append(var)
             index += 1

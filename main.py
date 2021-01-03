@@ -7,6 +7,7 @@ from check_box import Check_box
 from check_box import List_box
 from time import sleep
 from calender import Time
+import tkinter
 # from ft_twint import Config_twint
 from threading import Timer, Thread
 
@@ -57,6 +58,10 @@ def main():
 
 def app_init():
     apps.title("extracting_tweets")
+    # apps.iconbitmap('./images/icon.ico') 
+    # apps.iconphoto(True, PhotoImage(file='icon.ico'))
+    # img = PhotoImage(file='./icon.ico') 
+    # root.tk.call('wm', 'iconphoto', root._w, img) 
     apps.geometry( '1200x590+0+0')#'950x530+0+0')#750x580+10+10 bg="#091833"  1200x590+0+0'
     apps.configure(background="#091833")
 

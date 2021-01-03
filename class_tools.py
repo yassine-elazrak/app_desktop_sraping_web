@@ -84,6 +84,7 @@ class DIR:
     def __exit__(self,exc_type, exc_value, traceback):
         # os.rmdir(self.name)
         shutil.rmtree(self.name)
+        # pass
 
 
 class Run:
@@ -126,14 +127,13 @@ class Run:
         for thread in self.list_thread:
             thread.start()
 
-    def my_job(self, keys, since, until , outfile , custom):
-        print("my_job keys=>", keys)
-        print("my_job since=>", since)
-        print("my_job until=>", until)
-        print("my_job outfile=>", outfile)
-        print("my_job custom=>", custom)
+    def my_job(self, keys, since, until , outfile):
+        # print("my_job keys=>", keys)
+        # print("my_job since=>", since)
+        # print("my_job until=>", until)
+        # print("my_job outfile=>", outfile)
         self.twint = Config_twint(keys=keys , since=since , \
-            until=until, outfile=outfile , custom=custom)
+            until=until, outfile=outfile)
         self.twint.run()
 
     def join_files(self):
@@ -162,12 +162,12 @@ class Run:
         self.list_thread.clear()
         self.start = True
         print("\n\n\n\n\n   finish thread    \n\n\n\n")
-        File(self.list_file,self.name_file).sum_file()
+        File(self.list_file,self.name_file, self.custom).sum_file()
     
     def task_thread(self):
         self.get_all()
         self.update_time()
-        header = ["id","conversation_id","created_at","date,time","timezone","user_id","username","name","place","tweet","language","mentions","urls,photos",\
+        header = ["id","conversation_id","created_at","date","time","timezone","user_id","username","name","place","tweet","language","mentions","urls","photos",\
             "replies_count","retweets_count","likes_count","hashtags",\
                 "cashtags","link","retweet","quote_url","video","thumbnail","near","geo","source",\
                 "user_rt_id","user_rt","retweet_id","reply_to","retweet_date","translate","trans_src","trans_dest"]
@@ -186,12 +186,12 @@ class Run:
                     self.list_file.append(name_path)
 
                     self.list_thread.append(Thread(target=self.my_job, args=[[key] , self.since , \
-                        self.until, name_path , [1,2,3, key]]))
+                        self.until, name_path ]))
+            self.list_time.clear()
             self.exec()
             print("\\n\n\n\n\nend --------  threading         ")
             self.wait_thread()
-            self.list_time.clear()
-            # self.list_thread.clear()
+            
     
     def run(self):
         if self.start == True:

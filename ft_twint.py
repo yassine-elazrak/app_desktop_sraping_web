@@ -6,9 +6,10 @@ import pandas as pd
 #     import sys; sys.exit() from threading import Timer, Thread
 
 class File:
-    def __init__(self, list_file=[],name_file=""):
+    def __init__(self, list_file=[],name_file="", custom = []):
         self.list_file = list_file
         self.name_file = name_file
+        self.custom = custom
 
     def sum_file(self):
         # with open(self.name_file, 'a') as out:
@@ -17,6 +18,10 @@ class File:
         #             data.__next__()
         #             for line in data:
         #                 out.write(line)
+        # def slice_file(self):
+    #     df = pd.read_csv(".tweets.csv")
+    #     new_f = df[self.keys]
+    #     new_f.to_csv(self.name_file , index=False)
 
         # data_files = []
         # for name in self.list_file:
@@ -25,17 +30,20 @@ class File:
         # df_all = pd.concat(data_files)
         # df_all.to_csv(self.name_file, index=False)
        data_csv = pd.concat( [ pd.read_csv(f) for f in self.list_file] )
+    #    print("\n \n custom", self.custom, len(self.custom))
+       if len(self.custom) != 22:
+           data_csv = data_csv[self.custom]
+    #    print("hehe\h]h]h]]n]\n\n\n\n\n\n\n\n\n\n",data_csv["language"].head())
        data_csv.to_csv(self.name_file , index=False )
 
 
 
 class Config_twint:
-    def __init__(self, keys=[], since="2018-12-29",until="2019-01-01", outfile="tweets33", custom=[]):
-        print("yassine  ttkeys ", keys)
-        print("ttsince ", since)
-        print("ttuntil ", until)
-        print("ttoutfile", outfile)
-        print("ttcustom ", custom)  
+    def __init__(self, keys=[], since="2018-12-29",until="2019-01-01", outfile="tweets33"):
+        # print("yassine  ttkeys ", keys)
+        # print("ttsince ", since)
+        # print("ttuntil ", until)
+        # print("ttoutfile", outfile)
   
         # self.name_file = outfile
         # self.keys = custom
@@ -68,15 +76,7 @@ class Config_twint:
 
 
 # def main():
-#     run = Config_twint(keys=["RAM_Maroc"],custom=["id",
-#             "conversation_id",
-#             "created_at",
-#             "date",
-#             "time",
-#             "timezone",
-#             "user_id",
-#             "username",
-#             "name"])
+#     run = Config_twint(keys=["RAM_Maroc"])
 #     run.run()
 # if __name__ == "__main__":
 #     main()

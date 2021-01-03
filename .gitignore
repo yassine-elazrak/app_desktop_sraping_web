@@ -8,4 +8,9 @@ buil*
 .DS*
 *.spec
 *.csv
+img
+img/*
 dis*
+dist/*
+dist
+
