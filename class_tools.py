@@ -11,7 +11,7 @@ import tkinter.font as TkFont
 import shutil
 import pandas as pd
 import csv
-
+from tkinter import ttk
 
 class Input(Entry):
     def __init__(
@@ -86,6 +86,41 @@ class DIR:
         shutil.rmtree(self.name)
         # pass
 
+class Bar:
+
+    def __init__(self, apps=None):
+        self.apps = apps
+        self.progress = ttk.Progressbar(self.apps, orient="horizontal",
+                                        length=600, mode='determinate')
+        self.progress.grid(row=8, column=3)
+        self.bytes = 0
+        self.step = 30
+        self.maxbytes = 0
+        self.progress.start()
+
+    def start(self):
+        self.progress["value"] = 0
+        self.maxbytes = 50000
+        self.progress["maximum"] = 50000
+        self.read_bytes()
+
+    def read_bytes(self):
+        '''simulate reading 500 bytes; update progress bar'''
+        self.bytes += self.step
+        self.progress["value"] = self.bytes
+        if self.bytes < self.maxbytes:
+            # read more bytes after 10 ms
+            self.apps.after(2, self.read_bytes)
+        else:
+            self.progress["value"] = 0
+            self.bytes  = 0
+            self.apps.after(2, self.read_bytes)
+
+    def stop(self):
+        print("Stopping bar")
+        self.progress.stop()
+        self.progress.destroy()
+
 
 class Run:
     def __init__(self, apps=None, date=None, path=None, box=None, arena=None):
@@ -122,6 +157,18 @@ class Run:
         self.path.clear_all()
         self.box.clear_all()
         self.arena.clear_all()
+        # self.list_time.clear()
+        # self.list_file.clear()
+        # self.
+        self.keys = []
+        self.custom = []
+        self.since = ""
+        self.until = ""
+        self.name_file = ""
+        self.list_thread = []
+        self.list_file = []
+        self.list_time = []
+        self.start = True
 
     def exec(self):
         for thread in self.list_thread:
@@ -163,7 +210,9 @@ class Run:
         self.start = True
         print("\n\n\n\n\n   finish thread    \n\n\n\n")
         File(self.list_file,self.name_file, self.custom).sum_file()
-    
+        self.clear_all()
+        # self.bar.stop()
+
     def task_thread(self):
         self.get_all()
         self.update_time()
@@ -196,7 +245,11 @@ class Run:
     def run(self):
         if self.start == True:
             self.start = False
-            Thread(target=self.task_thread).start()
+            th = Thread(target=self.task_thread).start()
+            # th.join()
+            print("join")
+            # self.bar = Bar(self.master)
+            # self.bar.start()
         else:
             print("waitng  is not finish frsit search\n")
 

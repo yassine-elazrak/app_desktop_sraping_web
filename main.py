@@ -12,7 +12,7 @@ import tkinter
 from threading import Timer, Thread
 
 from tkinter import font as tkFont
-
+from MainView import MainView
 
 font10="{Courier New} 10 normal"
 font11 = {"{U.S. 101} 30 bold"}
@@ -32,22 +32,22 @@ font16="{Segoe UI} 13 bold"
 #  , "الخطوط الملكية المغربية"    , "لارام",  " لارام"\
 # ,"الخطوط_الملكية_المغربية" ]
 
-apps = Tk()
+apps = MainView()
 
-def main():
-    helv36 = tkFont.Font(family='Helvetica', size=36, weight=tkFont.BOLD)
-    clander= Time(apps)
-    clander.main()
-    path = DIR(apps)
-    path.main()
-    box = Check_box(apps)
-    box.main()
-    arena = List_box(apps)
-    arena.main()
-    run=Run(apps,clander, path, box, arena)
-    print("run")
-    Thread(target=run.main).start()
-    print("end _run")
+# def main():
+#     helv36 = tkFont.Font(family='Helvetica', size=36, weight=tkFont.BOLD)
+#     clander= Time(apps.container)
+#     clander.main()
+#     path = DIR(apps.container)
+#     path.main()
+#     box = Check_box(apps.container)
+#     box.main()
+#     arena = List_box(apps.container)
+#     arena.main()
+#     run=Run(apps.container,clander, path, box, arena)
+#     print("run")
+#     Thread(target=run.main).start()
+#     print("end _run")
 
     # btn1 = Button(text='btn1', font=helv36)
     # btn1.grid(row=0, column=0, columnspan=1, sticky='EWNS')
@@ -62,11 +62,11 @@ def app_init():
     # apps.iconphoto(True, PhotoImage(file='icon.ico'))
     # img = PhotoImage(file='./icon.ico') 
     # root.tk.call('wm', 'iconphoto', root._w, img) 
-    apps.geometry( '1200x590+0+0')#'950x530+0+0')#750x580+10+10 bg="#091833"  1200x590+0+0'
+    apps.geometry( '1200x790+0+0')#'950x530+0+0')#750x580+10+10 bg="#091833"  1200x590+0+0'
     apps.configure(background="#091833")
 
 
 if __name__ == "__main__":
     app_init()
-    main()
+    # main()
     apps.mainloop()

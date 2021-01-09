@@ -15,6 +15,8 @@ from tkcalendar import Calendar, DateEntry
 class Time:
     def __init__(self, app):
         self.master = app
+        print("init time calender]n\n\n")
+        self.butt_cal = Button(app, text="ok", bg='red', height = 1, width = 14)
         self.date_since = "2019-12-27"
         self.date_untill = "2020-01-27"
         self.var_since = StringVar()
